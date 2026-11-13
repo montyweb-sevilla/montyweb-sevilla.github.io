@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Cafetería La Toscana · propuesta de web</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Bar de tapas en Sevilla: tapas, medias y raciones, cerveza bien fría y terraza. Reservas para grupos por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Caveat:wght@500;700&family=Work+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: pizarra de bar — fondo verde pizarra, letra de tiza para lo del día, carta en tabla tapa/media/ración, barra de acciones fija en móvil */
+:root{
+  --pizarra:#18221d;
+  --pizarra-2:#202d26;
+  --pizarra-3:#2a3a31;
+  --tiza:#f1eee4;
+  --tiza-2:#b9bfb4;
+  --cerveza:#f0a830;
+  --almagra:#c8553d;
+  --linea:#34453b;
+  --rotulo:"Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --mano:"Caveat", "Comic Sans MS", cursive;
+  --texto:"Work Sans", "Segoe UI", system-ui, sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{background:var(--pizarra);color:var(--tiza);font-family:var(--texto);font-size:16px;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--pizarra)}
+.wrap{max-width:1120px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+h1,h2,h3{font-family:var(--rotulo);font-weight:800;text-transform:uppercase;line-height:.95;letter-spacing:.01em;margin:0;text-wrap:balance}
+p{margin:0}
+.eti{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--cerveza)}
+:focus-visible{outline:3px solid var(--cerveza);outline-offset:2px;border-radius:4px}
+img{height:auto}
+
+.demo{background:var(--cerveza);color:#1b1408;font-size:.8rem;text-align:center;font-weight:500}
+.demo .wrap{padding-block:7px}
+
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(24,34,29,.95);backdrop-filter:blur(6px);border-bottom:1px solid var(--linea)}
+header.top .wrap{display:flex;align-items:center;gap:20px;padding-block:12px}
+.marca{text-decoration:none;margin-right:auto;line-height:1}
+.marca b{display:block;font-family:var(--rotulo);font-weight:900;font-size:1.7rem;text-transform:uppercase;letter-spacing:.02em}
+.marca span{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tiza-2)}
+nav.menu{display:flex;gap:22px;font-weight:600;font-size:.95rem}
+nav.menu a{text-decoration:none;color:var(--tiza-2)}
+nav.menu a:hover{color:var(--cerveza)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:6px;padding:12px 20px;font:700 1rem var(--texto);text-decoration:none;cursor:pointer;border:2px solid transparent;transition:transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn-1{background:var(--cerveza);color:#1b1408}
+.btn-2{background:transparent;color:var(--tiza);border-color:var(--tiza-2)}
+.btn-sm{padding:9px 14px;font-size:.92rem}
+@media (max-width:860px){nav.menu{display:none}}
+
+/* portada */
+.hero{position:relative;isolation:isolate;overflow:hidden}
+.hero img.fondo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(24,34,29,.96) 0%,rgba(24,34,29,.82) 45%,rgba(24,34,29,.25) 100%)}
+.hero .wrap{padding-block:64px 72px}
+.hero h1{font-size:clamp(3.4rem,10vw,7rem);font-weight:900;max-width:9ch}
+.hero .lema{font-family:var(--mano);font-size:clamp(1.6rem,3.4vw,2.2rem);color:var(--cerveza);margin-top:10px;max-width:22ch;line-height:1.15}
+.estado{display:inline-flex;align-items:center;gap:10px;margin-top:24px;padding:8px 14px;border-radius:6px;background:rgba(241,238,228,.1);font-weight:600;font-size:.95rem}
+.estado i{width:10px;height:10px;border-radius:50%;background:#5ccf86;box-shadow:0 0 0 4px rgba(92,207,134,.2)}
+.estado.cerrado i{background:var(--almagra);box-shadow:0 0 0 4px rgba(200,85,61,.25)}
+.acciones{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.datos{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.datos span{padding:6px 12px;border:1px dashed var(--tiza-2);border-radius:6px;font-size:.9rem}
+@media (max-width:700px){.hero img.fondo{height:300px;object-position:50% 78%}.hero::after{background:linear-gradient(180deg,rgba(24,34,29,0) 0px,rgba(24,34,29,.15) 160px,rgba(24,34,29,1) 300px)}.hero .wrap{padding-block:230px 48px}}
+
+section{padding-block:64px}
+.cab{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:16px;margin-bottom:26px}
+.cab h2{font-size:clamp(2.4rem,6vw,3.6rem);margin-top:6px}
+.cab p{color:var(--tiza-2);max-width:44ch}
+
+/* pizarra del día */
+.dia .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
+.tablero{position:relative;padding:30px 30px 26px;border-radius:8px;background:radial-gradient(120% 90% at 30% 20%,#2c3b32 0%,#1d2822 70%);border:10px solid #6b4a2b;box-shadow:inset 0 0 40px rgba(0,0,0,.45),0 14px 30px rgba(0,0,0,.35)}
+.tablero h3{font-family:var(--mano);text-transform:none;font-weight:700;font-size:2.4rem;color:var(--tiza);letter-spacing:0}
+.tablero .fecha{font-family:var(--mano);font-size:1.4rem;color:var(--cerveza)}
+.tablero ul{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:8px}
+.tablero li{display:flex;justify-content:space-between;gap:16px;font-family:var(--mano);font-size:1.6rem;line-height:1.2;border-bottom:1px dashed rgba(241,238,228,.25);padding-bottom:6px}
+.tablero li span:last-child{color:var(--cerveza);white-space:nowrap}
+.dia .foto img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:8px}
+@media (max-width:860px){.dia .wrap{grid-template-columns:1fr}.dia .foto img{aspect-ratio:16/10}}
+
+/* carta */
+.carta{background:var(--pizarra-2)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.chips a{padding:7px 14px;border-radius:6px;background:var(--pizarra-3);text-decoration:none;font-weight:600;font-size:.9rem}
+.chips a:hover{background:var(--cerveza);color:#1b1408}
+.tabla-wrap{overflow-x:auto}
+table.precios{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;min-width:520px}
+table.precios caption{text-align:left;font-family:var(--rotulo);font-weight:800;text-transform:uppercase;font-size:1.9rem;color:var(--cerveza);padding:26px 0 8px}
+table.precios th{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tiza-2);font-weight:700;text-align:right;padding:8px 10px;border-bottom:2px solid var(--linea)}
+table.precios th:first-child{text-align:left;padding-left:0}
+table.precios td{padding:11px 10px;border-bottom:1px solid var(--linea);text-align:right;white-space:nowrap}
+table.precios td:first-child{text-align:left;white-space:normal;padding-left:0}
+table.precios td small{display:block;color:var(--tiza-2);font-size:.85rem}
+table.precios td.no{color:#5c6a61}
+.bebidas{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:34px}
+.bebida{padding:16px;border-radius:8px;background:var(--pizarra-3);display:flex;flex-direction:column;gap:2px}
+.bebida b{font-family:var(--rotulo);font-size:1.8rem;color:var(--cerveza);line-height:1}
+@media (max-width:760px){.bebidas{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* fotos y el bar */
+.galeria{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.galeria img{display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px}
+.galeria img:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:auto;height:100%}
+@media (max-width:760px){.galeria{grid-template-columns:repeat(2,minmax(0,1fr))}.galeria img:first-child{aspect-ratio:1/1.05}}
+.ventajas{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:28px}
+.ventaja{padding:20px;border-top:3px solid var(--cerveza);background:var(--pizarra-2);border-radius:0 0 8px 8px}
+.ventaja h3{font-size:1.5rem;margin-bottom:6px}
+.ventaja p{color:var(--tiza-2);font-size:.95rem}
+@media (max-width:860px){.ventajas{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.ventajas{grid-template-columns:1fr}}
+
+/* opiniones */
+.ops{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.op{padding:22px;border-radius:8px;background:var(--pizarra-2);display:flex;flex-direction:column;gap:10px}
+.op .est{color:var(--cerveza);letter-spacing:2px}
+.op .quien{font-weight:600}
+.op .quien small{color:var(--tiza-2);font-weight:400}
+.nota-ej{font-size:.8rem;color:var(--tiza-2);margin-top:14px}
+@media (max-width:860px){.ops{grid-template-columns:1fr}}
+
+/* grupos */
+.grupos .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:36px}
+form.res{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:24px;border-radius:8px;background:var(--pizarra-2)}
+form.res label{display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:.92rem}
+form.res input,form.res select{font:inherit;font-weight:400;padding:11px 12px;border:1px solid var(--linea);border-radius:6px;background:var(--pizarra);color:var(--tiza);min-width:0}
+form.res .ancho{grid-column:1/-1}
+.vista{grid-column:1/-1;padding:14px 16px;border-radius:6px;background:#1f3a2b;color:#cfeedd;font-size:.95rem}
+.vista b{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px;color:#8fd7ad}
+.lado{display:flex;flex-direction:column;gap:18px}
+.caja{padding:22px;border-radius:8px;background:var(--pizarra-2)}
+.tel{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:6px}
+.tel output{font-family:var(--rotulo);font-weight:800;font-size:2rem;color:var(--cerveza);user-select:all}
+.horario{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.horario td{padding:7px 0;border-bottom:1px solid var(--linea)}
+.horario td:last-child{text-align:right}
+.horario tr.hoy td{color:var(--cerveza);font-weight:700}
+@media (max-width:860px){.grupos .wrap{grid-template-columns:1fr}form.res{grid-template-columns:1fr}}
+
+footer{border-top:1px solid var(--linea);padding-block:36px 110px;font-size:.92rem;color:var(--tiza-2)}
+footer .wrap{display:grid;gap:14px}
+footer b{color:var(--tiza)}
+footer .legal{display:flex;flex-wrap:wrap;gap:8px 18px}
+footer .firma b{color:var(--cerveza)}
+@media (min-width:861px){footer{padding-bottom:36px}}
+
+.barra{position:fixed;left:0;right:0;bottom:0;z-index:30;display:none;background:var(--pizarra-2);border-top:1px solid var(--linea);padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.barra .fila{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:8px}
+.barra .btn{padding:11px 6px;font-size:.92rem}
+@media (max-width:860px){.barra{display:block}}
+
+dialog{border:0;border-radius:10px;padding:0;max-width:min(440px,calc(100vw - 32px));background:var(--pizarra-2);color:var(--tiza);box-shadow:0 20px 60px rgba(0,0,0,.5)}
+dialog::backdrop{background:rgba(0,0,0,.6)}
+dialog .in{padding:24px;display:grid;gap:12px}
+dialog h3{font-size:2rem;color:var(--cerveza)}
+dialog pre{white-space:pre-wrap;font:inherit;background:#1f3a2b;color:#cfeedd;padding:12px 14px;border-radius:6px;margin:0}
+</style>
+</head>
+<body>
+
+
+<div class="demo"><div class="wrap">Propuesta de web preparada por <b>Monty Web</b> para Cafetería La Toscana. No es su web oficial: las fotos, los textos, los precios, el horario y las opiniones son de ejemplo.</div></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="marca" href="#inicio"><b>Cafetería La Toscana</b><span>Bodeguita · Sevilla</span></a>
+    <nav class="menu" aria-label="Secciones"><a href="#hoy">Hoy</a><a href="#carta">Tapas</a><a href="#bar">El bar</a><a href="#grupos">Grupos</a></nav>
+    <a class="btn btn-1 btn-sm" href="#carta">Ver tapas</a>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="hero">
+    <img class="fondo" src="../img/bodeguita-el-compas-1.jpg" alt="Patatas bravas con su salsa y un vermut en la barra">
+    <div class="wrap">
+      <p class="eti">Bar de tapas</p>
+      <h1>Cafetería La Toscana</h1>
+      <p class="lema">Tapas de las de siempre y la cerveza más fría del barrio.</p>
+      <p class="estado" id="estado"><i></i><span>Hoy abrimos de 12:00 a 16:30 y de 20:00 a 00:30</span></p>
+      <div class="acciones"><a class="btn btn-1" href="#carta">Ver las tapas</a><a class="btn btn-2" href="#grupos">Reservar para un grupo</a></div>
+      <div class="datos"><span>Tapas desde 2,50 €</span><span>Terraza con sombra</span><span>Ponemos el fútbol</span></div>
+    </div>
+  </div>
+
+  <section class="dia" id="hoy">
+    <div class="wrap">
+      <div class="tablero" aria-label="Pizarra de hoy">
+        <h3>Fuera de carta</h3>
+        <p class="fecha" id="fecha">Hoy</p>
+        <ul>
+          <li><span>Carrillada al Pedro Ximénez</span><span>3,50 €</span></li>
+          <li><span>Tortilla de camarones</span><span>2,80 €</span></li>
+          <li><span>Berenjenas con miel de caña</span><span>3,00 €</span></li>
+          <li><span id="guiso">Guiso del día: lentejas</span><span>3,00 €</span></li>
+          <li><span>Tinto de verano + tapa</span><span>4,00 €</span></li>
+        </ul>
+      </div>
+      <div class="foto"><img src="../img/bodeguita-el-compas-2.jpg" alt="Camarero tirando una caña en el grifo" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section class="carta" id="carta">
+    <div class="wrap">
+      <div class="cab"><div><p class="eti">La carta</p><h2>Tapa, media o ración</h2></div><p>Pide una tapa para probar, una media para compartir o la ración entera. Lo que tenga un guion no se sirve en ese tamaño.</p></div>
+      <div class="chips"><a href="#frias">Frías</a><a href="#calientes">Calientes</a><a href="#fritos">Fritos</a><a href="#montaditos">Montaditos</a><a href="#bebida">Para beber</a></div>
+      <div class="tabla-wrap">
+        <table class="precios" id="frias"><caption>Frías</caption>
+          <thead><tr><th scope="col">Tapa</th><th scope="col">Tapa</th><th scope="col">Media</th><th scope="col">Ración</th></tr></thead>
+          <tbody>
+            <tr><td>Ensaladilla de la casa<small>Con gambas y picos</small></td><td>2,50 €</td><td>6,00 €</td><td>9,00 €</td></tr>
+            <tr><td>Salmorejo<small>Con jamón y huevo duro</small></td><td>2,50 €</td><td class="no">–</td><td>7,00 €</td></tr>
+            <tr><td>Queso viejo de oveja</td><td>3,00 €</td><td>7,00 €</td><td>12,00 €</td></tr>
+            <tr><td>Chicharrones de Cádiz<small>Con limón y comino</small></td><td>3,00 €</td><td class="no">–</td><td>9,00 €</td></tr>
+          </tbody>
+        </table>
+        <table class="precios" id="calientes"><caption>Calientes</caption>
+          <thead><tr><th scope="col">Tapa</th><th scope="col">Tapa</th><th scope="col">Media</th><th scope="col">Ración</th></tr></thead>
+          <tbody>
+            <tr><td>Espinacas con garbanzos</td><td>2,80 €</td><td>6,50 €</td><td class="no">–</td></tr>
+            <tr><td>Solomillo al whisky<small>Con patatas fritas caseras</small></td><td>3,50 €</td><td>8,00 €</td><td>13,00 €</td></tr>
+            <tr><td>Albóndigas en salsa de tomate</td><td>3,00 €</td><td>7,00 €</td><td>11,00 €</td></tr>
+            <tr><td>Patatas bravas</td><td>2,50 €</td><td>5,00 €</td><td>8,00 €</td></tr>
+          </tbody>
+        </table>
+        <table class="precios" id="fritos"><caption>Fritos</caption>
+          <thead><tr><th scope="col">Tapa</th><th scope="col">Tapa</th><th scope="col">Media</th><th scope="col">Ración</th></tr></thead>
+          <tbody>
+            <tr><td>Croquetas de puchero<small>La tapa son dos</small></td><td>2,50 €</td><td>6,00 €</td><td>10,00 €</td></tr>
+            <tr><td>Adobo de cazón</td><td>3,00 €</td><td>7,50 €</td><td>12,00 €</td></tr>
+            <tr><td>Pavía de bacalao</td><td>3,00 €</td><td class="no">–</td><td class="no">–</td></tr>
+            <tr><td>Boquerones en vinagre fritos</td><td>2,80 €</td><td>6,50 €</td><td>10,00 €</td></tr>
+          </tbody>
+        </table>
+        <table class="precios" id="montaditos"><caption>Montaditos y bocatas</caption>
+          <thead><tr><th scope="col">Tapa</th><th scope="col">Montadito</th><th scope="col">Bocata</th><th scope="col">&nbsp;</th></tr></thead>
+          <tbody>
+            <tr><td>Pringá de la casa</td><td>2,50 €</td><td>5,50 €</td><td class="no"></td></tr>
+            <tr><td>Serranito<small>Lomo, jamón y pimiento frito</small></td><td>3,00 €</td><td>6,00 €</td><td class="no"></td></tr>
+            <tr><td>Lomo con roquefort</td><td>2,80 €</td><td>5,50 €</td><td class="no"></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="bebidas" id="bebida">
+        <div class="bebida"><b>1,50 €</b>Caña bien tirada</div>
+        <div class="bebida"><b>2,20 €</b>Copa de cerveza</div>
+        <div class="bebida"><b>2,50 €</b>Tinto de verano</div>
+        <div class="bebida"><b>2,20 €</b>Vino de la casa</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="bar">
+    <div class="wrap">
+      <div class="cab"><div><p class="eti">El bar</p><h2>Para venir con quien quieras</h2></div><p>Barra para el tapeo rápido, mesas dentro y terraza con sombra todo el año.</p></div>
+      <div class="galeria">
+        <img src="../img/bodeguita-el-compas-3.jpg" alt="Montaditos con chorizo y pimiento en la barra" loading="lazy">
+        <img src="../img/bodeguita-el-compas-4.jpg" alt="Dos copas de cerveza recién tiradas" loading="lazy">
+        <img src="../img/bodeguita-el-compas-5.jpg" alt="Croquetas caseras en plato" loading="lazy">
+        <img src="../img/bodeguita-el-compas-6.jpg" alt="Albóndigas en salsa de tomate" loading="lazy">
+        <img src="../img/bodeguita-el-compas-7.jpg" alt="Tostas con anchoas y pimientos" loading="lazy">
+      </div>
+      <div class="ventajas">
+        <div class="ventaja"><h3>Terraza</h3><p>Con toldo en verano y estufas en invierno.</p></div>
+        <div class="ventaja"><h3>Fútbol</h3><p>Betis, Sevilla, Champions y la Selección en pantalla grande.</p></div>
+        <div class="ventaja"><h3>Grupos</h3><p>Cumpleaños, despedidas y comidas de empresa hasta 30 personas.</p></div>
+        <div class="ventaja"><h3>Para llevar</h3><p>Raciones y montaditos para recoger. Encárgalos por WhatsApp.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="cab"><div><p class="eti">Google · 4,6 de 5 · 540 opiniones</p><h2>Lo que dice el barrio</h2></div></div>
+      <div class="ops">
+        <article class="op"><div class="est">★★★★★</div><p>Las croquetas de puchero y la ensaladilla, lo mejor. Y la cerveza siempre fría, que no es poco.</p><p class="quien">Rafa M. <small>· hace 3 semanas</small></p></article>
+        <article class="op"><div class="est">★★★★★</div><p>Fuimos 14 para un cumpleaños, nos prepararon la mesa en la terraza y salimos encantados.</p><p class="quien">Lucía G. <small>· hace 1 mes</small></p></article>
+        <article class="op"><div class="est">★★★★☆</div><p>Bar de los de toda la vida, de tapa barata y buen trato. Los fines de semana hay que esperar un poco.</p><p class="quien">Antonio P. <small>· hace 2 meses</small></p></article>
+      </div>
+      <p class="nota-ej">Opiniones de ejemplo para esta muestra. En la web real se muestran las vuestras de Google.</p>
+    </div>
+  </section>
+
+  <section class="grupos" id="grupos" style="background:var(--pizarra-2)">
+    <div class="wrap">
+      <div>
+        <p class="eti">Grupos y celebraciones</p>
+        <h2 style="font-size:clamp(2.4rem,6vw,3.6rem);margin:6px 0 10px">¿Venís muchos?</h2>
+        <p style="color:var(--tiza-2);margin-bottom:20px">Dinos cuántos sois y os guardamos la mesa. Para grupos de más de 8, mejor avisar con un día.</p>
+        <form class="res" id="form-res" novalidate style="background:var(--pizarra)">
+          <label for="r-dia">Día<input id="r-dia" type="date"></label>
+          <label for="r-hora">Hora<select id="r-hora"><option>13:30</option><option selected>14:00</option><option>14:30</option><option>21:00</option><option>21:30</option><option>22:00</option></select></label>
+          <label for="r-pers">Personas<select id="r-pers"><option>4</option><option>6</option><option selected>8</option><option>10</option><option>12</option><option>15</option><option>20</option><option>Más de 20</option></select></label>
+          <label for="r-motivo">Motivo<select id="r-motivo"><option>Cumpleaños</option><option>Comida de empresa</option><option>Ver el fútbol</option><option>Despedida</option><option>Otro</option></select></label>
+          <label class="ancho" for="r-nombre">Nombre<input id="r-nombre" type="text" placeholder="Tu nombre" autocomplete="name"></label>
+          <div class="vista"><b>Así nos llega tu mensaje</b><span id="vista-txt"></span></div>
+          <button class="btn btn-1 ancho" type="submit">Enviar por WhatsApp</button>
+        </form>
+      </div>
+      <div class="lado">
+        <div class="caja"><p class="eti">Llámanos</p><div class="tel"><output id="tel">vuestro teléfono</output><button class="btn btn-2 btn-sm" type="button" data-copiar="vuestro teléfono">Copiar</button></div></div>
+        <div class="caja"><p class="eti" style="margin-bottom:6px">Horario</p><table class="horario" id="horario" aria-label="Horario"><tbody></tbody></table></div>
+        <div class="caja" id="donde"><p class="eti">Dónde estamos</p><p style="font-weight:600;margin:6px 0 12px">Calle Batán 97 · 41100 Sevilla</p><a class="btn btn-2 btn-sm" href="https://www.google.com/maps/search/?api=1&amp;query=Cafeter%C3%ADa+La+Toscana+Calle+Bat%C3%A1n+97+Coria+del+R%C3%ADo" target="_blank" rel="noopener">Cómo llegar</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b>Cafetería La Toscana</b> · Calle Batán 97 · Sevilla · vuestro teléfono</div>
+    <div class="legal"><span>Aviso legal</span><span>Política de privacidad</span><span>Sin cookies de seguimiento</span></div>
+    <div class="firma">Web de muestra diseñada por <b>Monty Web</b>. Hacemos webs para bares, restaurantes y tiendas de Sevilla.</div>
+  </div>
+</footer>
+
+<div class="barra" aria-label="Acciones rápidas"><div class="fila">
+  <button class="btn btn-2" type="button" data-demo="llamar">Llamar</button>
+  <a class="btn btn-1" href="#carta">Tapas</a>
+  <a class="btn btn-2" href="#donde">Llegar</a>
+</div></div>
+
+<dialog id="aviso"><div class="in"><h3 id="aviso-t">Así funcionaría</h3><p id="aviso-p"></p><pre id="aviso-msg" hidden></pre><button class="btn btn-1" type="button" id="aviso-ok">Entendido</button></div></dialog>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BarOrPub","name":"Cafetería La Toscana","servesCuisine":"Tapas","priceRange":"€","telephone":"+34 vuestro teléfono","address":{"@type":"PostalAddress","streetAddress":"Calle Batán 97","postalCode":"41100","addressLocality":"Sevilla","addressCountry":"ES"}}
+</script>
+<script>
+(function(){
+  var HORARIO={1:[],2:["12:00-16:30","20:00-00:30"],3:["12:00-16:30","20:00-00:30"],4:["12:00-16:30","20:00-00:30"],5:["12:00-16:30","20:00-01:30"],6:["12:00-17:00","20:00-01:30"],0:["12:00-17:00"]};
+  var NOM=["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+  var GUISO=["Guiso del día: menudo","Hoy descansamos","Guiso del día: lentejas","Guiso del día: garbanzos con bacalao","Guiso del día: menudo","Guiso del día: papas con choco","Guiso del día: callos"];
+  var p=new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Madrid",weekday:"short",hour:"2-digit",minute:"2-digit",hour12:false}).formatToParts(new Date()),o={};
+  p.forEach(function(x){o[x.type]=x.value});
+  var D={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6}[o.weekday], M=(+o.hour%24)*60+(+o.minute);
+  function aMin(t,cierre){var a=t.split(":"),m=+a[0]*60+(+a[1]);return (cierre&&m<300)?m+1440:m}
+  document.getElementById("fecha").textContent="Hoy, "+NOM[D].toLowerCase();
+  document.getElementById("guiso").textContent=GUISO[D];
+  var tb=document.querySelector("#horario tbody");
+  [1,2,3,4,5,6,0].forEach(function(d){var tr=document.createElement("tr");if(d===D)tr.className="hoy";tr.innerHTML="<td>"+NOM[d]+(d===D?" (hoy)":"")+"</td><td>"+(HORARIO[d].length?HORARIO[d].join(" y ").replace(/-/g," – "):"Cerrado")+"</td>";tb.appendChild(tr)});
+  var est=document.getElementById("estado"),txt=est.querySelector("span"),t=HORARIO[D],cierra=null,prox=null;
+  t.forEach(function(r){var a=r.split("-");if(M>=aMin(a[0])&&M<aMin(a[1],true))cierra=a[1];if(!prox&&M<aMin(a[0]))prox=a[0]});
+  if(cierra){txt.textContent="Abierto ahora · cerramos a las "+cierra}else{est.classList.add("cerrado");txt.textContent=prox?"Cerrado ahora · abrimos hoy a las "+prox:(t.length?"Ya hemos cerrado · mañana más":"Hoy lunes descansamos")}
+  var dia=document.getElementById("r-dia");dia.value=new Date().toISOString().slice(0,10);dia.min=dia.value;
+  function v(id){return document.getElementById(id).value}
+  function msg(){var d=dia.value?new Date(dia.value+"T12:00:00").toLocaleDateString("es-ES",{weekday:"long",day:"numeric",month:"long"}):"(elige día)";var n=v("r-nombre").trim()||"(tu nombre)";return "Hola, soy "+n+". Queremos mesa para "+v("r-pers")+" el "+d+" a las "+v("r-hora")+" ("+v("r-motivo").toLowerCase()+"). ¿Tenéis hueco?"}
+  var f=document.getElementById("form-res");function pinta(){document.getElementById("vista-txt").textContent=msg()}
+  f.addEventListener("input",pinta);f.addEventListener("change",pinta);pinta();
+  var dlg=document.getElementById("aviso");
+  function aviso(p,m){document.getElementById("aviso-p").textContent=p;var pre=document.getElementById("aviso-msg");pre.hidden=!m;pre.textContent=m||"";if(dlg.showModal)dlg.showModal()}
+  document.getElementById("aviso-ok").addEventListener("click",function(){dlg.close()});
+  f.addEventListener("submit",function(e){e.preventDefault();aviso("En la web real, este botón abre WhatsApp con este mensaje ya escrito para el bar:",msg())});
+  document.querySelectorAll("[data-demo=llamar]").forEach(function(b){b.addEventListener("click",function(){aviso("En la web real, este botón llama directamente al bar con un toque.")})});
+  document.querySelectorAll("[data-copiar]").forEach(function(b){b.addEventListener("click",function(){var val=b.getAttribute("data-copiar");function ok(){b.textContent="Copiado";setTimeout(function(){b.textContent="Copiar"},1600)}function sel(){var r=document.createRange();r.selectNodeContents(document.getElementById("tel"));var s=getSelection();s.removeAllRanges();s.addRange(r)}if(navigator.clipboard){navigator.clipboard.writeText(val).then(ok,sel)}else sel()})});
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Huerta La Merced · propuesta de web</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Cocina andaluza en Gines: guisos, pescaíto y arroces. Reserva tu mesa por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: casa encalada — blanco de cal, azul de azulejo y albero; foto grande arriba, carta en dos columnas, barra de acciones fija en móvil */
+:root{
+  --cal:#ffffff;
+  --cal-2:#f3f6fb;
+  --azul:#1d4e9e;
+  --azul-osc:#143a78;
+  --albero:#e3a63a;
+  --tinta:#18202e;
+  --gris:#566173;
+  --linea:#dfe5ee;
+  --display:"Gloock", "Georgia", "Times New Roman", serif;
+  --texto:"Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --azulejo:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%23ffffff'/%3E%3Cpath d='M24 4 L30 18 L44 24 L30 30 L24 44 L18 30 L4 24 L18 18 Z' fill='%231d4e9e'/%3E%3Ccircle cx='24' cy='24' r='4.5' fill='%23e3a63a'/%3E%3Cpath d='M0 0 L8 0 L0 8 Z M48 0 L40 0 L48 8 Z M0 48 L8 48 L0 40 Z M48 48 L40 48 L48 40 Z' fill='%231d4e9e'/%3E%3C/svg%3E");
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{background:var(--cal);color:var(--tinta);font-family:var(--texto);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--cal)}
+.wrap{max-width:1120px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.1;text-wrap:balance;margin:0}
+p{margin:0}
+.eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--azul)}
+:focus-visible{outline:3px solid var(--albero);outline-offset:2px;border-radius:4px}
+
+/* aviso de muestra */
+.demo{background:var(--tinta);color:#fff;font-size:.8rem;text-align:center}
+.demo .wrap{padding-block:7px}
+.demo b{color:var(--albero);font-weight:600}
+
+/* cabecera */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--linea)}
+header.top .wrap{display:flex;align-items:center;gap:20px;padding-block:12px}
+.marca{display:flex;flex-direction:column;text-decoration:none;line-height:1.05;margin-right:auto}
+.marca b{font-family:var(--display);font-weight:400;font-size:1.45rem;color:var(--azul-osc)}
+.marca span{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gris)}
+nav.menu{display:flex;gap:22px;font-weight:500;font-size:.95rem}
+nav.menu a{text-decoration:none;color:var(--gris)}
+nav.menu a:hover{color:var(--azul)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:12px 22px;font:600 1rem var(--texto);text-decoration:none;cursor:pointer;border:2px solid transparent;transition:transform .15s,background .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn-1{background:var(--azul);color:#fff}
+.btn-1:hover{background:var(--azul-osc)}
+.btn-2{background:#fff;color:var(--azul);border-color:var(--azul)}
+.btn-sm{padding:9px 16px;font-size:.92rem}
+@media (max-width:860px){nav.menu{display:none}}
+
+/* portada */
+.hero{padding-block:40px 56px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(2.6rem,6vw,4.6rem);color:var(--azul-osc);margin-top:10px}
+.hero .lema{font-size:1.18rem;color:var(--gris);margin-top:16px;max-width:30ch}
+.estado{display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:8px 14px;border-radius:999px;background:var(--cal-2);font-weight:600;font-size:.95rem}
+.estado i{width:10px;height:10px;border-radius:50%;background:#2e9d5b;box-shadow:0 0 0 4px rgba(46,157,91,.18)}
+.estado.cerrado i{background:#c2412d;box-shadow:0 0 0 4px rgba(194,65,45,.16)}
+.acciones{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.datos{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:28px;padding-top:22px;border-top:1px solid var(--linea);font-size:.95rem;color:var(--gris)}
+.datos b{color:var(--tinta)}
+.foto-hero{position:relative;min-width:0}
+img{height:auto}
+.foto-hero img{display:block;width:100%;height:auto;aspect-ratio:4/3.4;object-fit:cover;object-position:72% 60%;border-radius:6px}
+.foto-hero::before{content:"";position:absolute;inset:-14px -14px auto auto;width:42%;height:42%;background:var(--azulejo);background-size:32px;border-radius:6px;z-index:-1}
+.foto-hero figcaption{position:absolute;left:14px;bottom:14px;background:#fff;padding:8px 12px;border-radius:4px;font-size:.85rem;font-weight:600;box-shadow:0 6px 18px rgba(24,32,46,.18)}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr;gap:28px}.foto-hero{order:-1}.foto-hero::before{display:none}.hero{padding-block:22px 40px}}
+
+/* franja de azulejo */
+.cenefa{height:26px;background:var(--azulejo);background-size:26px}
+
+/* secciones */
+section{padding-block:64px}
+.cabeza{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px;margin-bottom:28px}
+.cabeza h2{font-size:clamp(2rem,4vw,2.8rem);color:var(--azul-osc);margin-top:6px}
+.cabeza p{color:var(--gris);max-width:46ch}
+
+/* carta */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.chips a{padding:7px 14px;border:1px solid var(--linea);border-radius:999px;text-decoration:none;font-weight:600;font-size:.9rem;color:var(--azul)}
+.chips a:hover{background:var(--cal-2)}
+.carta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 56px}
+.grupo h3{font-size:1.6rem;color:var(--azul);padding-bottom:10px;border-bottom:2px solid var(--azul);margin-bottom:6px}
+.grupo .nota{font-size:.88rem;color:var(--gris);margin:8px 0 4px}
+.plato{display:grid;grid-template-columns:1fr auto;gap:2px 16px;padding:12px 0;border-bottom:1px dashed var(--linea)}
+.plato b{font-weight:600}
+.plato .precio{font-variant-numeric:tabular-nums;font-weight:700;color:var(--azul-osc);white-space:nowrap}
+.plato small{grid-column:1/-1;color:var(--gris);font-size:.9rem}
+.tag{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:4px;background:#fbefd9;color:#8a5a0c;font-size:.72rem;font-weight:700;vertical-align:2px}
+.menu-dia{margin-top:44px;display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;padding:26px 28px;border-radius:6px;background:var(--azul);color:#fff}
+.menu-dia .precio-grande{font-family:var(--display);font-size:3rem;line-height:1}
+.menu-dia p{color:#dbe5f6}
+.menu-dia b{color:#fff}
+@media (max-width:860px){.carta{grid-template-columns:1fr}.menu-dia{grid-template-columns:1fr;gap:10px}}
+
+/* platos de la casa */
+.casa{background:var(--cal-2)}
+.fotos{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:18px}
+.fotos figure{margin:0;min-width:0}
+.fotos img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:6px}
+.fotos figure:first-child img{aspect-ratio:auto;height:100%;max-height:520px}
+.fotos figcaption{margin-top:10px;font-weight:600}
+.fotos figcaption span{display:block;font-weight:400;color:var(--gris);font-size:.92rem}
+@media (max-width:860px){.fotos{grid-template-columns:1fr 1fr}.fotos figure:first-child{grid-column:1/-1}.fotos figure:first-child img{aspect-ratio:16/10;height:auto}}
+
+/* opiniones */
+.resumen{display:flex;align-items:center;gap:14px}
+.resumen .nota-g{font-family:var(--display);font-size:3rem;color:var(--azul-osc);line-height:1}
+.estrellas{color:var(--albero);letter-spacing:2px}
+.opiniones{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.op{padding:22px;border:1px solid var(--linea);border-radius:6px;display:flex;flex-direction:column;gap:12px}
+.op .quien{display:flex;align-items:center;gap:10px;font-weight:600}
+.op .ini{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--cal-2);color:var(--azul);font-weight:700}
+.op small{color:var(--gris);font-weight:400}
+.ejemplo{font-size:.8rem;color:var(--gris)}
+@media (max-width:860px){.opiniones{grid-template-columns:1fr}}
+
+/* reservas */
+.reservas .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px}
+form.res{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:26px;border:1px solid var(--linea);border-radius:6px}
+form.res label{display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:.92rem}
+form.res input,form.res select{font:inherit;font-weight:400;padding:11px 12px;border:1px solid #c9d2e0;border-radius:6px;background:#fff;color:var(--tinta);min-width:0}
+form.res .ancho{grid-column:1/-1}
+.vista{grid-column:1/-1;padding:14px 16px;border-radius:6px;background:#e9f7ee;color:#1d5134;font-size:.95rem;white-space:pre-line}
+.vista b{display:block;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.lado{display:flex;flex-direction:column;gap:22px}
+.tarjeta{padding:22px;border-radius:6px;background:var(--cal-2)}
+.tel{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:8px}
+.tel output{font-family:var(--display);font-size:1.8rem;color:var(--azul-osc);user-select:all}
+.horario{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.horario td{padding:8px 0;border-bottom:1px solid var(--linea)}
+.horario td:last-child{text-align:right}
+.horario tr.hoy td{font-weight:700;color:var(--azul)}
+@media (max-width:860px){.reservas .wrap{grid-template-columns:1fr}form.res{grid-template-columns:1fr}}
+
+/* dónde */
+.donde .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.donde img{display:block;width:100%;aspect-ratio:16/11;object-fit:cover;border-radius:6px}
+.direccion{font-size:1.25rem;font-weight:600;margin:14px 0 6px}
+.lista{list-style:none;padding:0;margin:18px 0 24px;display:grid;gap:8px;color:var(--gris)}
+.lista li::before{content:"";display:inline-block;width:8px;height:8px;margin-right:10px;background:var(--albero);transform:rotate(45deg)}
+@media (max-width:860px){.donde .wrap{grid-template-columns:1fr}}
+
+/* pie */
+footer{background:var(--tinta);color:#c5cbd6;padding-block:40px 110px;font-size:.92rem}
+footer .wrap{display:grid;gap:18px}
+footer b{color:#fff}
+footer .legal{display:flex;flex-wrap:wrap;gap:8px 18px}
+footer .legal a{color:#c5cbd6}
+footer .firma{border-top:1px solid #2c3546;padding-top:16px;color:#9aa3b2}
+footer .firma b{color:var(--albero)}
+@media (min-width:861px){footer{padding-bottom:40px}}
+
+/* barra fija en móvil */
+.barra{position:fixed;left:0;right:0;bottom:0;z-index:30;display:none;background:#fff;border-top:1px solid var(--linea);box-shadow:0 -6px 18px rgba(24,32,46,.08);padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.barra .fila{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:8px}
+.barra .btn{padding:11px 8px;font-size:.92rem}
+@media (max-width:860px){.barra{display:block}}
+
+/* aviso de demostración */
+dialog{border:0;border-radius:8px;padding:0;max-width:min(440px,calc(100vw - 32px));box-shadow:0 20px 60px rgba(0,0,0,.3);color:var(--tinta);background:#fff}
+dialog::backdrop{background:rgba(24,32,46,.55)}
+dialog .in{padding:24px;display:grid;gap:12px}
+dialog h3{font-size:1.5rem;color:var(--azul-osc)}
+dialog pre{white-space:pre-wrap;font:inherit;background:#e9f7ee;color:#1d5134;padding:12px 14px;border-radius:6px;margin:0}
+</style>
+</head>
+<body>
+
+
+<div class="demo"><div class="wrap">Propuesta de web preparada por <b>Monty Web</b> para Huerta La Merced. No es su web oficial: las fotos, los textos, los precios, el horario y las opiniones son de ejemplo.</div></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="marca" href="#inicio"><b>Huerta La Merced</b><span>Gines · Sevilla</span></a>
+    <nav class="menu" aria-label="Secciones">
+      <a href="#carta">La carta</a><a href="#casa">De la casa</a><a href="#opiniones">Opiniones</a><a href="#donde">Dónde estamos</a>
+    </nav>
+    <a class="btn btn-1 btn-sm" href="#reservar">Reservar mesa</a>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Cocina andaluza</p>
+        <h1>Huerta La Merced</h1>
+        <p class="lema">Guisos de cuchara, pescaíto frito y arroces hechos al momento, en pleno centro de Gines.</p>
+        <p class="estado" id="estado"><i></i><span>Hoy abrimos de 13:00 a 16:30 y de 20:30 a 23:30</span></p>
+        <div class="acciones">
+          <a class="btn btn-1" href="#reservar">Reservar mesa</a>
+          <a class="btn btn-2" href="#carta">Ver la carta</a>
+        </div>
+        <div class="datos">
+          <span><b class="estrellas">★★★★★</b> <b>4,7</b> en Google · 312 opiniones</span>
+          <span><b>Menú del día</b> 12,50 €</span>
+          <span><b>Terraza</b> en verano</span>
+        </div>
+      </div>
+      <figure class="foto-hero" style="margin:0">
+        <img src="../img/meson-la-alcuza-1.jpg" alt="Mesa con paella, tostas, chacinas y tinto de verano" width="1400" height="1190">
+        <figcaption>Viernes de arroz y tapeo</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="cenefa" role="presentation"></div>
+
+  <section id="carta">
+    <div class="wrap">
+      <div class="cabeza">
+        <div><p class="eyebrow">Carta</p><h2>Lo que sale de nuestra cocina</h2></div>
+        <p>Cocinamos con producto del día. Si tienes alguna alergia, dínoslo al reservar y te contamos qué puedes tomar.</p>
+      </div>
+      <div class="chips" aria-label="Ir a">
+        <a href="#entrantes">Entrantes</a><a href="#pescaito">Pescaíto</a><a href="#carnes">Carnes</a><a href="#arroces">Arroces</a><a href="#postres">Postres</a>
+      </div>
+      <div class="carta">
+        <div class="grupo" id="entrantes">
+          <h3>Entrantes</h3>
+          <div class="plato"><b>Salmorejo con jamón y huevo</b><span class="precio">6,50 €</span><small>Tomate de la vega, aceite de oliva virgen extra y pan de pueblo.</small></div>
+          <div class="plato"><b>Espinacas con garbanzos</b><span class="precio">7,00 €</span><small>Receta sevillana de toda la vida, con comino y pan frito.</small></div>
+          <div class="plato"><b>Croquetas caseras de puchero <span class="tag">8 uds</span></b><span class="precio">9,00 €</span><small>Con la carne del puchero del día anterior, como en casa.</small></div>
+          <div class="plato"><b>Ensaladilla de la casa</b><span class="precio">6,00 €</span><small>Con atún, gambas y picos.</small></div>
+          <div class="plato"><b>Chacinas ibéricas</b><span class="precio">14,00 €</span><small>Lomo, salchichón y queso curado de oveja.</small></div>
+        </div>
+        <div class="grupo" id="pescaito">
+          <h3>Pescaíto</h3>
+          <div class="plato"><b>Adobo de cazón</b><span class="precio">11,00 €</span><small>Marinado desde la víspera con comino, orégano y vinagre.</small></div>
+          <div class="plato"><b>Chocos fritos</b><span class="precio">12,00 €</span><small>Choco de Huelva, rebozado fino.</small></div>
+          <div class="plato"><b>Boquerones fritos</b><span class="precio">10,00 €</span><small>Con limón y sal en escamas.</small></div>
+          <div class="plato"><b>Gambas al ajillo</b><span class="precio">13,50 €</span><small>En cazuela de barro, con guindilla.</small></div>
+          <div class="plato"><b>Pescado del día a la sal</b><span class="precio">S/M</span><small>Pregunta qué ha llegado hoy de la lonja.</small></div>
+        </div>
+        <div class="grupo" id="carnes">
+          <h3>Carnes</h3>
+          <div class="plato"><b>Carrillada ibérica al Pedro Ximénez</b><span class="precio">14,50 €</span><small>Guisada a fuego lento, con patatas a lo pobre.</small></div>
+          <div class="plato"><b>Rabo de toro</b><span class="precio">15,00 €</span><small>Deshuesado, en su salsa de vino tinto.</small></div>
+          <div class="plato"><b>Presa ibérica a la brasa</b><span class="precio">17,00 €</span><small>Con pimientos asados y sal gorda.</small></div>
+          <div class="plato"><b>Solomillo al whisky</b><span class="precio">13,50 €</span><small>Con ajos laminados y patatas fritas caseras.</small></div>
+        </div>
+        <div class="grupo" id="arroces">
+          <h3>Arroces</h3>
+          <p class="nota">Precio por persona, mínimo dos personas. Los marcados se encargan con 24 horas.</p>
+          <div class="plato"><b>Paella de marisco</b><span class="precio">15,00 €</span><small>Gambas, mejillones, almejas y calamar.</small></div>
+          <div class="plato"><b>Arroz negro con alioli</b><span class="precio">14,00 €</span><small>Con tinta de choco y su alioli casero.</small></div>
+          <div class="plato"><b>Arroz meloso de carrillada</b><span class="precio">15,50 €</span><small>Con setas de temporada.</small></div>
+          <div class="plato"><b>Arroz caldoso de bogavante <span class="tag">Por encargo</span></b><span class="precio">24,00 €</span><small>Medio bogavante por persona.</small></div>
+        </div>
+        <div class="grupo" id="postres">
+          <h3>Postres caseros</h3>
+          <div class="plato"><b>Tocino de cielo</b><span class="precio">5,00 €</span><small>Con caramelo tostado.</small></div>
+          <div class="plato"><b>Tarta de queso al horno</b><span class="precio">5,50 €</span><small>Cremosa por dentro.</small></div>
+          <div class="plato"><b>Arroz con leche</b><span class="precio">4,50 €</span><small>Con canela y piel de limón.</small></div>
+          <div class="plato"><b>Torrijas <span class="tag">Cuaresma</span></b><span class="precio">5,00 €</span><small>De vino dulce y miel, solo en temporada.</small></div>
+        </div>
+      </div>
+      <div class="menu-dia">
+        <div class="precio-grande">12,50 €</div>
+        <p><b>Menú del día, de lunes a viernes al mediodía.</b><br>Primero, segundo, postre o café, pan y bebida. Cambia cada día: lo publicamos por la mañana en Instagram.</p>
+        <a class="btn btn-2" href="#reservar">Reservar para hoy</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="casa" id="casa">
+    <div class="wrap">
+      <div class="cabeza">
+        <div><p class="eyebrow">De la casa</p><h2>Los platos por los que vuelve la gente</h2></div>
+        <p>Si es tu primera vez, empieza por aquí.</p>
+      </div>
+      <div class="fotos">
+        <figure><img src="../img/meson-la-alcuza-2.jpg" alt="Paellera grande con arroz de marisco" loading="lazy"><figcaption>Paella de marisco<span>Los domingos, en paellera grande para toda la mesa.</span></figcaption></figure>
+        <figure><img src="../img/meson-la-alcuza-3.jpg" alt="Arroz meloso con gambas y almejas en plato azul" loading="lazy"><figcaption>Arroz marinero<span>Meloso, con gambas y almejas.</span></figcaption></figure>
+        <figure><img src="../img/meson-la-alcuza-4.jpg" alt="Crema fría servida en plato hondo blanco" loading="lazy"><figcaption>Salmorejo de temporada<span>Con tomate de la vega del Guadalquivir.</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="opiniones">
+    <div class="wrap">
+      <div class="cabeza">
+        <div><p class="eyebrow">Opiniones en Google</p><h2>Lo que dicen de nosotros</h2></div>
+        <div class="resumen"><span class="nota-g">4,7</span><div><div class="estrellas">★★★★★</div><small>312 opiniones</small></div></div>
+      </div>
+      <div class="opiniones">
+        <article class="op"><div class="quien"><span class="ini">MC</span><div>María C.<br><small>Hace 2 semanas</small></div></div><div class="estrellas">★★★★★</div><p>Las espinacas y la carrillada, de diez. Fuimos un domingo con los niños y nos atendieron fenomenal aunque estaba lleno.</p></article>
+        <article class="op"><div class="quien"><span class="ini">JL</span><div>José Luis R.<br><small>Hace 1 mes</small></div></div><div class="estrellas">★★★★★</div><p>El adobo es el mejor que he probado en mucho tiempo. Precio muy razonable para lo que comes.</p></article>
+        <article class="op"><div class="quien"><span class="ini">AB</span><div>Ana B.<br><small>Hace 2 meses</small></div></div><div class="estrellas">★★★★☆</div><p>Encargamos la paella para ocho y llegó a la mesa perfecta. Repetiremos en la terraza cuando haga bueno.</p></article>
+      </div>
+      <p class="ejemplo" style="margin-top:14px">Opiniones de ejemplo para esta muestra. En la web real se muestran las vuestras de Google.</p>
+    </div>
+  </section>
+
+  <div class="cenefa" role="presentation"></div>
+
+  <section class="reservas" id="reservar">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Reservas</p>
+        <h2 style="font-size:clamp(2rem,4vw,2.8rem);color:var(--azul-osc);margin:6px 0 10px">Reserva tu mesa en un minuto</h2>
+        <p style="color:var(--gris);margin-bottom:22px">Rellena esto y nos llega por WhatsApp con todo escrito. Te confirmamos enseguida.</p>
+        <form class="res" id="form-res" novalidate>
+          <label for="r-dia">Día<input id="r-dia" type="date" required></label>
+          <label for="r-hora">Hora<select id="r-hora"><option>13:30</option><option selected>14:00</option><option>14:30</option><option>15:00</option><option>20:30</option><option>21:00</option><option>21:30</option><option>22:00</option></select></label>
+          <label for="r-pers">Personas<select id="r-pers"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>Más de 8</option></select></label>
+          <label for="r-zona">Dónde<select id="r-zona"><option>Comedor</option><option>Terraza</option><option>Me da igual</option></select></label>
+          <label class="ancho" for="r-nombre">Nombre<input id="r-nombre" type="text" placeholder="Tu nombre" autocomplete="name"></label>
+          <div class="vista" id="vista" aria-live="polite"><b>Así nos llega tu mensaje</b><span id="vista-txt"></span></div>
+          <button class="btn btn-1 ancho" type="submit">Enviar reserva por WhatsApp</button>
+        </form>
+      </div>
+      <div class="lado">
+        <div class="tarjeta">
+          <p class="eyebrow">¿Prefieres llamar?</p>
+          <div class="tel"><output id="tel">657 66 12 30</output><button class="btn btn-2 btn-sm" type="button" data-copiar="657 66 12 30">Copiar</button></div>
+          <p style="color:var(--gris);margin-top:8px;font-size:.95rem">Para grupos de más de 10 personas o celebraciones, mejor por teléfono.</p>
+        </div>
+        <div class="tarjeta">
+          <p class="eyebrow" style="margin-bottom:8px">Horario</p>
+          <table class="horario" id="horario" aria-label="Horario de apertura"><tbody></tbody></table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="donde" id="donde">
+    <div class="wrap">
+      <img src="../img/meson-la-alcuza-5.jpg" alt="Comedor del mesón con mesas de madera y luz cálida" loading="lazy">
+      <div>
+        <p class="eyebrow">Dónde estamos</p>
+        <h2 style="font-size:clamp(2rem,4vw,2.8rem);color:var(--azul-osc);margin-top:6px">En el centro de Gines</h2>
+        <p class="direccion">Avenida Europa, 9 · 41960 Gines (Sevilla)</p>
+        <ul class="lista">
+          <li>A 15 minutos del centro de Sevilla en coche</li>
+          <li>Aparcamiento gratuito a 100 metros</li>
+          <li>Local accesible en silla de ruedas</li>
+        </ul>
+        <a class="btn btn-1" href="https://www.google.com/maps/search/?api=1&amp;query=Huerta+La+Merced+Avenida+Europa%2C+9+Gines" target="_blank" rel="noopener">Cómo llegar con Google Maps</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b>Huerta La Merced</b> · Avenida Europa, 9 · Gines (Sevilla) · 657 66 12 30</div>
+    <div class="legal"><a href="#inicio">Aviso legal</a><a href="#inicio">Política de privacidad</a><span>Esta web no usa cookies de seguimiento.</span></div>
+    <div class="firma">Web de muestra diseñada por <b>Monty Web</b>. Hacemos webs para bares, restaurantes y tiendas de Sevilla.</div>
+  </div>
+</footer>
+
+<div class="barra" aria-label="Acciones rápidas">
+  <div class="fila">
+    <button class="btn btn-2" type="button" data-demo="llamar">Llamar</button>
+    <a class="btn btn-1" href="#reservar">Reservar</a>
+    <a class="btn btn-2" href="#donde">Llegar</a>
+  </div>
+</div>
+
+<dialog id="aviso">
+  <div class="in">
+    <h3 id="aviso-t">Esto es una muestra</h3>
+    <p id="aviso-p"></p>
+    <pre id="aviso-msg" hidden></pre>
+    <button class="btn btn-1" type="button" id="aviso-ok">Entendido</button>
+  </div>
+</dialog>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Restaurant","name":"Huerta La Merced","servesCuisine":"Andaluza","priceRange":"€€","telephone":"+34 657 66 12 30","address":{"@type":"PostalAddress","streetAddress":"Avenida Europa, 9","postalCode":"41960","addressLocality":"Gines","addressRegion":"Sevilla","addressCountry":"ES"},"acceptsReservations":"True"}
+</script>
+<script>
+(function(){
+  // Horario: [día de la semana 0=domingo] -> tramos "HH:MM-HH:MM"
+  var HORARIO = {1:[],2:["13:00-16:30","20:30-23:30"],3:["13:00-16:30","20:30-23:30"],4:["13:00-16:30","20:30-23:30"],5:["13:00-16:30","20:30-00:00"],6:["13:00-16:30","20:30-00:00"],0:["13:00-17:00"]};
+  var NOMBRES = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+  function ahoraMadrid(){
+    var p = new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Madrid",weekday:"short",hour:"2-digit",minute:"2-digit",hour12:false}).formatToParts(new Date());
+    var o={}; p.forEach(function(x){o[x.type]=x.value});
+    var dias={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+    return {dia:dias[o.weekday], min:(+o.hour%24)*60+(+o.minute)};
+  }
+  function aMin(t){var a=t.split(":");var m=+a[0]*60+(+a[1]);return m===0?1440:m}
+  var ahora = ahoraMadrid();
+  // tabla
+  var tb = document.querySelector("#horario tbody");
+  [1,2,3,4,5,6,0].forEach(function(d){
+    var tr=document.createElement("tr"); if(d===ahora.dia) tr.className="hoy";
+    var t=HORARIO[d].length?HORARIO[d].join(" y ").replace(/-/g," – "):"Cerrado";
+    tr.innerHTML="<td>"+NOMBRES[d]+(d===ahora.dia?" (hoy)":"")+"</td><td>"+t+"</td>";
+    tb.appendChild(tr);
+  });
+  // estado
+  var est=document.getElementById("estado"), txt=est.querySelector("span");
+  var tramos=HORARIO[ahora.dia], abierto=null;
+  tramos.forEach(function(r){var a=r.split("-");if(ahora.min>=aMin(a[0])&&ahora.min<aMin(a[1]))abierto=a[1]});
+  if(abierto){ txt.textContent="Abierto ahora · cerramos a las "+(abierto==="00:00"?"12 de la noche":abierto); }
+  else {
+    est.classList.add("cerrado");
+    var prox=null;
+    tramos.forEach(function(r){var a=r.split("-");if(!prox&&ahora.min<aMin(a[0]))prox=a[0]});
+    txt.textContent = prox ? "Cerrado ahora · abrimos hoy a las "+prox : (tramos.length? "Ya hemos cerrado por hoy · mañana te esperamos" : "Hoy descansamos · te esperamos mañana");
+  }
+  // reserva
+  var f=document.getElementById("form-res"), dia=document.getElementById("r-dia");
+  var hoy=new Date(); dia.value=hoy.toISOString().slice(0,10); dia.min=dia.value;
+  function msg(){
+    var d=dia.value?new Date(dia.value+"T12:00:00").toLocaleDateString("es-ES",{weekday:"long",day:"numeric",month:"long"}):"(elige día)";
+    var n=document.getElementById("r-nombre").value.trim()||"(tu nombre)";
+    return "Hola, soy "+n+". Quería reservar mesa para "+document.getElementById("r-pers").value+" el "+d+" a las "+document.getElementById("r-hora").value+" ("+document.getElementById("r-zona").value.toLowerCase()+"). ¡Gracias!";
+  }
+  function pinta(){document.getElementById("vista-txt").textContent=msg()}
+  f.addEventListener("input",pinta); f.addEventListener("change",pinta); pinta();
+  var dlg=document.getElementById("aviso");
+  function aviso(t,p,m){
+    document.getElementById("aviso-t").textContent=t; document.getElementById("aviso-p").textContent=p;
+    var pre=document.getElementById("aviso-msg"); pre.hidden=!m; pre.textContent=m||"";
+    if(dlg.showModal) dlg.showModal();
+  }
+  document.getElementById("aviso-ok").addEventListener("click",function(){dlg.close()});
+  f.addEventListener("submit",function(e){e.preventDefault();aviso("Así funcionaría","En la web real, este botón abre WhatsApp con este mensaje ya escrito, listo para enviar al mesón:",msg())});
+  document.querySelectorAll("[data-demo=llamar]").forEach(function(b){b.addEventListener("click",function(){aviso("Así funcionaría","En la web real, este botón llama directamente al restaurante con un toque.")})});
+  document.querySelectorAll("[data-copiar]").forEach(function(b){b.addEventListener("click",function(){
+    var v=b.getAttribute("data-copiar");
+    function ok(){b.textContent="Copiado";setTimeout(function(){b.textContent="Copiar"},1600)}
+    if(navigator.clipboard){navigator.clipboard.writeText(v).then(ok,function(){sel()})}else sel();
+    function sel(){var r=document.createRange();r.selectNodeContents(document.getElementById("tel"));var s=getSelection();s.removeAllRanges();s.addRange(r)}
+  })});
+})();
+</script>
+
+</body>
+</html>
