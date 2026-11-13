@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Textiles Mata · propuesta de web</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Moda de mujer en Castilleja de la Cuesta: vestidos de invitada, fiesta y día a día. Pregunta por tu talla por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400&family=Jost:wght@400;500;600&display=swap">
+<style>
+/* Layout: revista de moda — blanco y negro con el amarillo albero como única nota de color; foto grande, rejilla de prendas con tallas, tira de Instagram */
+:root{
+  --blanco:#ffffff;
+  --papel:#f6f4f0;
+  --negro:#141414;
+  --albero:#d49a2c;
+  --gris:#6b6b6b;
+  --linea:#e6e2da;
+  --display:"Bodoni Moda", "Didot", "Bodoni MT", Georgia, serif;
+  --texto:"Jost", "Futura", "Century Gothic", system-ui, sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{background:var(--blanco);color:var(--negro);font-family:var(--texto);font-size:16px;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--blanco)}
+.wrap{max-width:1180px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1;margin:0;text-wrap:balance}
+p{margin:0}
+img{height:auto}
+.eti{font-size:.74rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase}
+:focus-visible{outline:2px solid var(--albero);outline-offset:3px}
+
+.demo{background:var(--negro);color:#ddd;font-size:.8rem;text-align:center}
+.demo .wrap{padding-block:7px}
+.demo b{color:var(--albero);font-weight:600}
+
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--linea)}
+header.top .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;padding-block:14px}
+nav.menu{display:flex;gap:24px;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase}
+nav.menu a{text-decoration:none}
+nav.menu a:hover{color:var(--albero)}
+.marca{text-decoration:none;text-align:center;line-height:1}
+.marca b{display:block;font-family:var(--display);font-weight:400;font-size:1.9rem;letter-spacing:.12em;text-transform:uppercase}
+.marca span{font-size:.64rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gris)}
+.cta{justify-self:end}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 24px;font:500 .82rem var(--texto);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:1px solid var(--negro);background:none;color:var(--negro);transition:background .15s,color .15s}
+.btn:hover{background:var(--negro);color:#fff}
+.btn-1{background:var(--negro);color:#fff}
+.btn-1:hover{background:var(--albero);border-color:var(--albero);color:var(--negro)}
+.btn-sm{padding:10px 16px}
+@media (max-width:860px){header.top .wrap{grid-template-columns:1fr}nav.menu,.cta{display:none}.marca{text-align:center}.marca b{font-size:1.6rem}.marca span{white-space:nowrap;letter-spacing:.22em}}
+
+/* portada */
+.hero .wrap{display:grid;grid-template-columns:1.25fr 1fr;gap:0;align-items:stretch;padding-block:28px 60px}
+.hero .foto{min-width:0}
+.hero .foto img{display:block;width:100%;height:100%;min-height:520px;max-height:680px;object-fit:cover}
+.hero .texto{background:var(--papel);padding:48px 44px;display:flex;flex-direction:column;justify-content:center;gap:18px}
+.hero h1{font-size:clamp(3rem,6.4vw,5.4rem);letter-spacing:-.01em}
+.hero h1 em{font-style:italic;color:var(--albero)}
+.hero .lema{color:var(--gris);font-size:1.08rem;max-width:34ch}
+.estado{font-size:.9rem;display:flex;align-items:center;gap:10px}
+.estado i{width:8px;height:8px;border-radius:50%;background:#3d9a62}
+.estado.cerrado i{background:#c2412d}
+.acciones{display:flex;flex-wrap:wrap;gap:10px}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr;padding-block:0 44px;padding-left:0;padding-right:0}.hero .foto img{min-height:0;aspect-ratio:4/4.4;max-height:none}.hero .texto{padding:30px max(16px,env(safe-area-inset-right,0px)) 32px max(16px,env(safe-area-inset-left,0px))}}
+
+section{padding-block:60px}
+.cab{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:16px;margin-bottom:30px;border-bottom:1px solid var(--negro);padding-bottom:16px}
+.cab h2{font-size:clamp(2.4rem,5vw,3.6rem);margin-top:10px}
+.cab p{color:var(--gris);max-width:40ch}
+
+/* filtro */
+.filtros{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.filtros button{font:500 .78rem var(--texto);letter-spacing:.14em;text-transform:uppercase;padding:9px 14px;border:1px solid var(--linea);background:#fff;color:var(--negro);cursor:pointer}
+.filtros button[aria-pressed="true"]{background:var(--negro);color:#fff;border-color:var(--negro)}
+
+/* prendas */
+.prendas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:34px 22px}
+.prenda{display:flex;flex-direction:column;gap:10px;min-width:0}
+.prenda .img{position:relative}
+.prenda img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;background:var(--papel)}
+.prenda .nuevo{position:absolute;top:12px;left:12px;background:var(--albero);color:var(--negro);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;padding:4px 9px;font-weight:600}
+.prenda h3{font-size:1.45rem;line-height:1.1}
+.prenda .fila{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.prenda .precio{font-variant-numeric:tabular-nums;font-weight:500}
+.tallas{display:flex;flex-wrap:wrap;gap:6px}
+.tallas button{min-width:40px;font:500 .82rem var(--texto);padding:6px 8px;border:1px solid var(--linea);background:#fff;color:var(--negro);cursor:pointer}
+.tallas button[aria-pressed="true"]{border-color:var(--negro);background:var(--negro);color:#fff}
+.tallas button:disabled{color:#bbb;text-decoration:line-through;cursor:not-allowed}
+.prenda .preg{align-self:flex-start}
+.prenda[hidden]{display:none}
+@media (max-width:900px){.prendas{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.prendas{gap:28px 12px}.prenda h3{font-size:1.15rem}.prenda .preg{padding:9px 10px;font-size:.7rem;letter-spacing:.1em}}
+
+/* cómo comprar */
+.como{background:var(--papel)}
+.pasos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;counter-reset:p}
+.paso{padding-top:18px;border-top:1px solid var(--negro)}
+.paso b{display:block;font-family:var(--display);font-size:1.6rem;font-weight:400;margin-bottom:6px}
+.paso b::before{counter-increment:p;content:counter(p) ". ";color:var(--albero)}
+.paso p{color:var(--gris)}
+@media (max-width:760px){.pasos{grid-template-columns:1fr}}
+
+/* instagram */
+.ig .grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+.ig .grid img{display:block;width:100%;aspect-ratio:1;object-fit:cover}
+.ig .nota{margin-top:14px;padding:14px 16px;border-left:3px solid var(--albero);background:var(--papel);color:var(--gris);font-size:.95rem}
+@media (max-width:760px){.ig .grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* tienda */
+.tienda .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.tienda img{display:block;width:100%;aspect-ratio:5/6;object-fit:cover}
+.tienda ul{list-style:none;padding:0;margin:18px 0 24px;display:grid;gap:10px}
+.tienda li{display:flex;gap:12px;align-items:baseline}
+.tienda li::before{content:"";flex:none;width:18px;height:1px;background:var(--albero);transform:translateY(-4px)}
+.horario{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;margin-top:6px}
+.horario td{padding:7px 0;border-bottom:1px solid var(--linea)}
+.horario td:last-child{text-align:right}
+.horario tr.hoy td{font-weight:600;color:var(--albero)}
+@media (max-width:860px){.tienda .wrap{grid-template-columns:1fr}.tienda img{aspect-ratio:4/3}}
+
+/* opiniones */
+.ops{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.op p{font-family:var(--display);font-size:1.25rem;line-height:1.35}
+.op small{display:block;margin-top:10px;color:var(--gris);font-size:.82rem;letter-spacing:.12em;text-transform:uppercase}
+@media (max-width:860px){.ops{grid-template-columns:1fr}}
+
+footer{background:var(--negro);color:#bdbdbd;padding-block:36px 110px;font-size:.9rem}
+footer .wrap{display:grid;gap:14px}
+footer b{color:#fff;font-weight:500}
+footer .legal{display:flex;flex-wrap:wrap;gap:8px 18px}
+footer .firma b{color:var(--albero)}
+@media (min-width:861px){footer{padding-bottom:36px}}
+
+.barra{position:fixed;left:0;right:0;bottom:0;z-index:30;display:none;background:#fff;border-top:1px solid var(--linea);padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.barra .fila{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:8px}
+.barra .btn{padding:12px 6px;font-size:.72rem;letter-spacing:.1em}
+@media (max-width:860px){.barra{display:block}}
+
+dialog{border:0;padding:0;max-width:min(440px,calc(100vw - 32px));background:#fff;color:var(--negro);box-shadow:0 20px 60px rgba(0,0,0,.3)}
+dialog::backdrop{background:rgba(20,20,20,.55)}
+dialog .in{padding:26px;display:grid;gap:12px}
+dialog h3{font-size:1.9rem}
+dialog pre{white-space:pre-wrap;font:inherit;background:#eaf6ef;color:#1f5236;padding:12px 14px;margin:0}
+</style>
+</head>
+<body>
+
+
+<div class="demo"><div class="wrap">Propuesta de web preparada por <b>Monty Web</b> para Textiles Mata. No es su web oficial: las fotos, los textos, los precios, el horario y las opiniones son de ejemplo.</div></div>
+
+<header class="top">
+  <div class="wrap">
+    <nav class="menu" aria-label="Secciones"><a href="#novedades">Novedades</a><a href="#como">Cómo comprar</a><a href="#tienda">La tienda</a></nav>
+    <a class="marca" href="#inicio"><b>Textiles Mata</b><span>Boutique · Castilleja de la Cuesta</span></a>
+    <a class="btn btn-sm cta" href="#novedades">Ver novedades</a>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="hero">
+    <div class="wrap">
+      <div class="foto"><img src="../img/boutique-albero-1.jpg" alt="Perchero con vestidos y blusas en tonos claros" width="1400" height="1100"></div>
+      <div class="texto">
+        <p class="eti">Primavera · Verano</p>
+        <h1>Vestidos para <em>invitada</em> y para cada día</h1>
+        <p class="lema">Moda de mujer elegida una a una, de la talla 36 a la 48. Ven a probártelo o pregúntanos por WhatsApp.</p>
+        <p class="estado" id="estado"><i></i><span>Abrimos de lunes a sábado</span></p>
+        <div class="acciones"><a class="btn btn-1" href="#novedades">Ver novedades</a><a class="btn" href="#tienda">Dónde estamos</a></div>
+      </div>
+    </div>
+  </div>
+
+  <section id="novedades">
+    <div class="wrap">
+      <div class="cab"><div><p class="eti">Recién llegado</p><h2>Novedades</h2></div><p>Elige tu talla y pregúntanos. Si te gusta, te lo guardamos 24 horas sin compromiso.</p></div>
+      <div class="filtros" role="group" aria-label="Filtrar">
+        <button type="button" aria-pressed="true" data-f="todo">Todo</button>
+        <button type="button" aria-pressed="false" data-f="invitada">Invitada</button>
+        <button type="button" aria-pressed="false" data-f="diario">Día a día</button>
+      </div>
+      <div class="prendas" id="prendas">
+        <article class="prenda" data-cat="diario">
+          <div class="img"><img src="../img/boutique-albero-2.jpg" alt="Vestido corto blanco con flores rojas" loading="lazy"><span class="nuevo">Nuevo</span></div>
+          <div class="fila"><h3>Vestido Jara</h3><span class="precio">49,90 €</span></div>
+          <div class="tallas" data-t="S,M,L,XL" data-agotada="XL"></div>
+          <button class="btn btn-sm preg" type="button">Preguntar por WhatsApp</button>
+        </article>
+        <article class="prenda" data-cat="invitada">
+          <div class="img"><img src="../img/boutique-albero-3.jpg" alt="Vestido rojo de lunares blancos, largo" loading="lazy"></div>
+          <div class="fila"><h3>Vestido Lunares</h3><span class="precio">59,90 €</span></div>
+          <div class="tallas" data-t="S,M,L" data-agotada=""></div>
+          <button class="btn btn-sm preg" type="button">Preguntar por WhatsApp</button>
+        </article>
+        <article class="prenda" data-cat="diario">
+          <div class="img"><img src="../img/boutique-albero-4.jpg" alt="Vestido rojo de tirantes con estampado de flores" loading="lazy"><span class="nuevo">Nuevo</span></div>
+          <div class="fila"><h3>Vestido Amapola</h3><span class="precio">45,90 €</span></div>
+          <div class="tallas" data-t="XS,S,M,L" data-agotada="XS"></div>
+          <button class="btn btn-sm preg" type="button">Preguntar por WhatsApp</button>
+        </article>
+        <article class="prenda" data-cat="invitada">
+          <div class="img"><img src="../img/boutique-albero-5.jpg" alt="Vestido blanco de manga larga con falda de vuelo" loading="lazy"></div>
+          <div class="fila"><h3>Vestido Azahar</h3><span class="precio">54,90 €</span></div>
+          <div class="tallas" data-t="S,M,L,XL" data-agotada=""></div>
+          <button class="btn btn-sm preg" type="button">Preguntar por WhatsApp</button>
+        </article>
+        <article class="prenda" data-cat="diario">
+          <div class="img"><img src="../img/boutique-albero-6.jpg" alt="Vestido corto de tirantes en tono crudo con flores pequeñas" loading="lazy"></div>
+          <div class="fila"><h3>Vestido Brisa</h3><span class="precio">39,90 €</span></div>
+          <div class="tallas" data-t="S,M,L" data-agotada="L"></div>
+          <button class="btn btn-sm preg" type="button">Preguntar por WhatsApp</button>
+        </article>
+        <article class="prenda" data-cat="invitada">
+          <div class="img"><img src="../img/boutique-albero-7.jpg" alt="Vestido largo palabra de honor de rayas" loading="lazy"><span class="nuevo">Nuevo</span></div>
+          <div class="fila"><h3>Vestido Marisma</h3><span class="precio">44,90 €</span></div>
+          <div class="tallas" data-t="S,M,L,XL" data-agotada="S"></div>
+          <button class="btn btn-sm preg" type="button">Preguntar por WhatsApp</button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="como" id="como">
+    <div class="wrap">
+      <div class="cab"><div><p class="eti">Fácil y sin líos</p><h2>Cómo comprar</h2></div></div>
+      <div class="pasos">
+        <div class="paso"><b>Elige</b><p>Mira las novedades y marca tu talla. Si no la ves, pregúntanos igualmente: entra género nuevo cada semana.</p></div>
+        <div class="paso"><b>Escríbenos</b><p>Con un toque nos llega por WhatsApp qué prenda y qué talla quieres. Te contestamos en el día.</p></div>
+        <div class="paso"><b>Recógelo o te lo llevamos</b><p>Te lo guardamos 24 horas para que vengas a probártelo. En Castilleja de la Cuesta te lo acercamos a casa gratis.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ig">
+    <div class="wrap">
+      <div class="cab"><div><p class="eti">Instagram · @boutiquealbero</p><h2>Lo último que hemos subido</h2></div><a class="btn btn-sm" href="#novedades">Ver novedades</a></div>
+      <div class="grid" id="ig"></div>
+      <p class="nota">En vuestra web, esta tira muestra sola las últimas fotos de vuestro Instagram. Subís la foto a Instagram como siempre y aparece aquí sin tocar nada.</p>
+    </div>
+  </section>
+
+  <section class="tienda" id="tienda">
+    <div class="wrap">
+      <img src="../img/boutique-albero-8.jpg" alt="Vestidos en tonos rosa y nude colgados en la tienda" loading="lazy">
+      <div>
+        <p class="eti">La tienda</p>
+        <h2 style="font-size:clamp(2.4rem,5vw,3.6rem);margin:10px 0 14px">Ven a probártelo</h2>
+        <p style="font-weight:500;font-size:1.1rem">Vuestra dirección · Castilleja de la Cuesta (Sevilla)</p>
+        <ul>
+          <li>Asesoramiento para bodas, bautizos y comuniones</li>
+          <li>Arreglos de bajos y tirantes en 48 horas</li>
+          <li>Pago con tarjeta y Bizum</li>
+        </ul>
+        <table class="horario" id="horario" aria-label="Horario"><tbody></tbody></table>
+        <div class="acciones" style="margin-top:22px"><a class="btn btn-1" href="https://www.google.com/maps/search/?api=1&amp;query=Textiles+Mata+Castilleja+de+la+Cuesta" target="_blank" rel="noopener">Cómo llegar</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="cab"><div><p class="eti">Vuestras opiniones de Google</p><h2>Clientas</h2></div></div>
+      <div class="ops">
+        <div class="op"><p>«Fui buscando un vestido para una boda y salí con el vestido y los complementos. Te asesoran de verdad.»</p><small>Carmen R.</small></div>
+        <div class="op"><p>«Ropa bonita y a buen precio, y siempre tienen algo nuevo. Me guardaron la talla hasta el día siguiente.»</p><small>Inma G.</small></div>
+        <div class="op"><p>«Pregunté por WhatsApp un domingo por la noche y el lunes por la mañana ya tenía respuesta.»</p><small>Sonia L.</small></div>
+      </div>
+      <p style="margin-top:18px;font-size:.8rem;color:var(--gris)">Opiniones de ejemplo para esta muestra. En la web real se muestran las vuestras de Google.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b>Textiles Mata</b> · Vuestra dirección · Castilleja de la Cuesta (Sevilla) · vuestro teléfono</div>
+    <div class="legal"><span>Aviso legal</span><span>Política de privacidad</span><span>Sin cookies de seguimiento</span></div>
+    <div class="firma">Web de muestra diseñada por <b>Monty Web</b>. Hacemos webs para tiendas, bares y peluquerías de Sevilla.</div>
+  </div>
+</footer>
+
+<div class="barra" aria-label="Acciones rápidas"><div class="fila">
+  <a class="btn" href="#tienda">Llegar</a>
+  <a class="btn btn-1" href="#novedades">Novedades</a>
+  <button class="btn" type="button" id="b-wa">WhatsApp</button>
+</div></div>
+
+<dialog id="aviso"><div class="in"><h3>Así funcionaría</h3><p id="aviso-p"></p><pre id="aviso-msg" hidden></pre><button class="btn btn-1" type="button" id="aviso-ok">Entendido</button></div></dialog>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ClothingStore","name":"Textiles Mata","priceRange":"€€","telephone":"+34 vuestro teléfono","address":{"@type":"PostalAddress","streetAddress":"Vuestra dirección","postalCode":"","addressLocality":"Castilleja de la Cuesta","addressRegion":"Sevilla","addressCountry":"ES"}}
+</script>
+<script>
+(function(){
+  var HORARIO={1:["10:00-13:30","17:30-20:30"],2:["10:00-13:30","17:30-20:30"],3:["10:00-13:30","17:30-20:30"],4:["10:00-13:30","17:30-20:30"],5:["10:00-13:30","17:30-20:30"],6:["10:00-14:00"],0:[]};
+  var NOM=["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+  var p=new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Madrid",weekday:"short",hour:"2-digit",minute:"2-digit",hour12:false}).formatToParts(new Date()),o={};
+  p.forEach(function(x){o[x.type]=x.value});
+  var D={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6}[o.weekday],M=(+o.hour%24)*60+(+o.minute);
+  function aMin(t){var a=t.split(":");return +a[0]*60+(+a[1])}
+  var tb=document.querySelector("#horario tbody");
+  [1,2,3,4,5,6,0].forEach(function(d){var tr=document.createElement("tr");if(d===D)tr.className="hoy";tr.innerHTML="<td>"+NOM[d]+(d===D?" (hoy)":"")+"</td><td>"+(HORARIO[d].length?HORARIO[d].join(" y ").replace(/-/g," – "):"Cerrado")+"</td>";tb.appendChild(tr)});
+  var est=document.getElementById("estado"),txt=est.querySelector("span"),c=null,pr=null;
+  HORARIO[D].forEach(function(r){var a=r.split("-");if(M>=aMin(a[0])&&M<aMin(a[1]))c=a[1];if(!pr&&M<aMin(a[0]))pr=a[0]});
+  if(c)txt.textContent="Abierto ahora · hasta las "+c;else{est.classList.add("cerrado");txt.textContent=pr?"Cerrado ahora · abrimos a las "+pr:"Cerrado ahora · te esperamos de lunes a sábado"}
+  // tallas
+  document.querySelectorAll(".tallas").forEach(function(t){
+    var ag=t.getAttribute("data-agotada");
+    t.getAttribute("data-t").split(",").forEach(function(s){var b=document.createElement("button");b.type="button";b.textContent=s;b.setAttribute("aria-pressed","false");if(s===ag){b.disabled=true;b.title="Agotada"}b.addEventListener("click",function(){t.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",String(x===b))})});t.appendChild(b)});
+  });
+  // filtros
+  document.querySelectorAll(".filtros button").forEach(function(b){b.addEventListener("click",function(){var f=b.getAttribute("data-f");document.querySelectorAll(".filtros button").forEach(function(x){x.setAttribute("aria-pressed",String(x===b))});document.querySelectorAll(".prenda").forEach(function(p){p.hidden=!(f==="todo"||p.getAttribute("data-cat")===f)})})});
+  // tira de Instagram con las mismas fotos (sin duplicar peso)
+  var ig=document.getElementById("ig");
+  document.querySelectorAll(".prenda img").forEach(function(im){var n=document.createElement("img");n.src=im.src;n.alt="";n.loading="lazy";ig.appendChild(n)});
+  var dlg=document.getElementById("aviso");
+  function aviso(t,m){document.getElementById("aviso-p").textContent=t;var pre=document.getElementById("aviso-msg");pre.hidden=!m;pre.textContent=m||"";if(dlg.showModal)dlg.showModal()}
+  document.getElementById("aviso-ok").addEventListener("click",function(){dlg.close()});
+  document.querySelectorAll(".preg").forEach(function(b){b.addEventListener("click",function(){var art=b.closest(".prenda"),n=art.querySelector("h3").textContent,pre=art.querySelector(".precio").textContent,t=art.querySelector('.tallas [aria-pressed="true"]');aviso("En la web real, este botón abre WhatsApp con la pregunta ya escrita para la tienda:","Hola, me gusta el "+n+" ("+pre+"). ¿Lo tenéis en talla "+(t?t.textContent:"(elige talla)")+"? ¡Gracias!")})});
+  document.getElementById("b-wa").addEventListener("click",function(){aviso("En la web real, este botón abre un chat de WhatsApp con la tienda.")});
+})();
+</script>
+
+</body>
+</html>
