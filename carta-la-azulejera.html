@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Taberna La Azulejera · Carta</title>
+<meta name="description" content="Carta en español, inglés, francés y alemán, con alérgenos. Ejemplo de carta con QR para bares con turistas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=DM+Sans:wght@400;500;700&display=swap">
+<style>
+/* Carta de taberna: blanco azulejo, azul cobalto y amarillo mostaza */
+:root{--fondo:#f7f5f0;--blanco:#fff;--tinta:#1c2440;--azul:#2448a8;--azul-2:#e7ecf8;--mostaza:#d9a521;--gris:#646a7a;--linea:#e3e0d7;--display:"Fraunces",Georgia,serif;--texto:"DM Sans","Segoe UI",system-ui,sans-serif;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fondo);color:var(--tinta);font-family:var(--texto);font-size:16px;line-height:1.55}
+.wrap{max-width:820px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.08;margin:0}
+p{margin:0}
+:focus-visible{outline:3px solid var(--mostaza);outline-offset:2px;border-radius:6px}
+.demo{background:var(--tinta);color:#dfe4f1;font-size:.8rem;text-align:center;padding:7px 16px;padding-top:calc(7px + env(safe-area-inset-top,0px))}
+.demo b{color:#fff}
+.cab{position:relative;color:#fff;overflow:hidden}
+.cab img{width:100%;height:240px;object-fit:cover}
+.cab::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 20%,rgba(20,26,50,.8))}
+.cab .in{position:absolute;left:0;right:0;bottom:0;z-index:1;padding-bottom:18px}
+.cab h1{font-size:clamp(2rem,7vw,2.8rem)}
+.cab p{opacity:.9}
+.idiomas{position:sticky;top:0;z-index:20;background:rgba(247,245,240,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--linea)}
+.idiomas .wrap{display:flex;gap:8px;padding-block:10px;overflow-x:auto}
+.idiomas button{flex:none;font:700 .92rem var(--texto);padding:9px 14px;border-radius:999px;border:1.5px solid var(--linea);background:var(--blanco);color:var(--tinta);cursor:pointer}
+.idiomas button[aria-pressed="true"]{background:var(--azul);border-color:var(--azul);color:#fff}
+.cats{display:flex;gap:16px;padding-block:14px 4px;overflow-x:auto;font-weight:700;font-size:.92rem}
+.cats a{color:var(--gris);text-decoration:none;white-space:nowrap}
+.cat{padding-top:22px}
+.cat h2{font-size:1.7rem;padding-bottom:6px;border-bottom:2px solid var(--mostaza);margin-bottom:4px}
+.plato{display:grid;grid-template-columns:1fr auto;gap:2px 14px;padding:14px 0;border-bottom:1px solid var(--linea)}
+.plato b{font-size:1.04rem}
+.plato .pre{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.plato .desc{grid-column:1/-1;color:var(--gris);font-size:.93rem}
+.plato .al{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.plato .al span{font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--azul-2);color:var(--azul)}
+.aviso{margin-top:18px;padding:14px 16px;border-radius:14px;background:var(--blanco);border:1px solid var(--linea);color:var(--gris);font-size:.9rem}
+.galeria{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:22px}
+.galeria img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px}
+.dueno{margin-top:44px;background:var(--tinta);color:#dfe4f1;padding-block:44px}
+.dueno .eti{font-size:.75rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mostaza)}
+.dueno h2{color:#fff;font-size:clamp(1.8rem,5vw,2.4rem);margin:8px 0 12px}
+.dueno .g{display:grid;grid-template-columns:1fr 220px;gap:26px;align-items:center}
+.dueno ul{margin:0;padding-left:18px;display:grid;gap:6px;color:#c3cadc}
+.mesa{background:#fff;color:var(--tinta);border-radius:18px;padding:16px;text-align:center;box-shadow:8px 8px 0 var(--mostaza)}
+.mesa #qr{display:grid;place-items:center;margin:8px auto;width:160px;height:160px}
+.mesa b{display:block;font-family:var(--display);font-size:1.15rem}
+.mesa small{color:var(--gris)}
+@media (max-width:640px){.dueno .g{grid-template-columns:1fr}.mesa{max-width:240px;margin-inline:auto}}
+footer{padding-block:26px 40px;color:var(--gris);font-size:.86rem;text-align:center}
+footer b{color:var(--azul)}
+</style>
+</head>
+<body>
+<div class="demo">Web de muestra hecha por <b>Monty Web</b>. El bar, los platos y los precios son de ejemplo.</div>
+
+<header class="cab">
+  <img src="img/carta-hero.jpg" alt="Paella en la mesa" width="1200" height="800">
+  <div class="in"><div class="wrap"><h1>Taberna La Azulejera</h1><p id="t-sub"></p></div></div>
+</header>
+
+<div class="idiomas" role="group" aria-label="Idioma / Language"><div class="wrap">
+  <button type="button" data-l="es">🇪🇸 Español</button>
+  <button type="button" data-l="en">🇬🇧 English</button>
+  <button type="button" data-l="fr">🇫🇷 Français</button>
+  <button type="button" data-l="de">🇩🇪 Deutsch</button>
+</div></div>
+
+<main class="wrap">
+  <nav class="cats" id="cats" aria-label="Secciones de la carta"></nav>
+  <div id="carta"></div>
+  <p class="aviso" id="t-aviso"></p>
+  <div class="galeria"><img src="img/carta-plato.jpg" alt="" loading="lazy"><img src="img/carta-costillas.jpg" alt="" loading="lazy"><img src="img/carta-mesa.jpg" alt="" loading="lazy"></div>
+</main>
+
+<section class="dueno">
+  <div class="wrap g">
+    <div>
+      <p class="eti">Para dueños de bares</p>
+      <h2>Tu carta en cuatro idiomas, con un QR en la mesa</h2>
+      <ul>
+        <li>El turista escanea el QR y la carta se abre sola en el idioma de su móvil.</li>
+        <li>Con los alérgenos de cada plato, como pide la ley.</li>
+        <li>¿Cambias un precio o un plato? Me lo dices y está cambiado en el momento, sin reimprimir nada.</li>
+        <li>Puede ir en un cartelito, en una pegatina o en una placa en cada mesa.</li>
+      </ul>
+    </div>
+    <div class="mesa"><b>Escanea y mira la carta</b><div id="qr" aria-label="Código QR de ejemplo"></div><small>Scan · Scannez · Scannen</small></div>
+  </div>
+</section>
+
+<footer>Web de muestra diseñada por <b>Monty Web</b>. Cartas en varios idiomas con QR para bares y restaurantes.</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+(function(){
+  var T={
+    es:{sub:"Tapas y cocina sevillana · Desde la barra hasta tu mesa",aviso:"Si tienes alguna alergia o intolerancia, pregúntanos: te decimos qué platos puedes tomar. Precios con IVA incluido.",cats:["Tapas","Raciones","Postres","Bebidas"],al:{g:"gluten",h:"huevo",l:"lácteos",p:"pescado",c:"crustáceos",m:"moluscos",s:"sulfitos"},tapa:"tapa",pp:"por persona"},
+    en:{sub:"Tapas and Seville cooking · From the bar to your table",aviso:"If you have any allergy or intolerance, just ask us and we'll tell you which dishes you can have. Prices include VAT.",cats:["Tapas","Sharing plates","Desserts","Drinks"],al:{g:"gluten",h:"egg",l:"dairy",p:"fish",c:"crustaceans",m:"molluscs",s:"sulphites"},tapa:"tapa",pp:"per person"},
+    fr:{sub:"Tapas et cuisine sévillane · Du comptoir à votre table",aviso:"Si vous avez une allergie ou une intolérance, demandez-nous : nous vous dirons quels plats vous pouvez prendre. Prix TVA comprise.",cats:["Tapas","À partager","Desserts","Boissons"],al:{g:"gluten",h:"œuf",l:"lait",p:"poisson",c:"crustacés",m:"mollusques",s:"sulfites"},tapa:"tapa",pp:"par personne"},
+    de:{sub:"Tapas und Sevillaner Küche · Von der Theke an Ihren Tisch",aviso:"Wenn Sie eine Allergie oder Unverträglichkeit haben, fragen Sie uns: Wir sagen Ihnen, welche Gerichte Sie essen können. Preise inkl. MwSt.",cats:["Tapas","Zum Teilen","Nachspeisen","Getränke"],al:{g:"Gluten",h:"Ei",l:"Milch",p:"Fisch",c:"Krebstiere",m:"Weichtiere",s:"Sulfite"},tapa:"Tapa",pp:"pro Person"}
+  };
+  var CARTA=[
+    [0,"3,50 €","t",["g","h"],{es:["Salmorejo cordobés","Crema fría de tomate con jamón ibérico y huevo duro."],en:["Salmorejo","Cold tomato cream with Iberian ham and boiled egg."],fr:["Salmorejo","Crème froide de tomate au jambon ibérique et œuf dur."],de:["Salmorejo","Kalte Tomatencreme mit Iberico-Schinken und Ei."]}],
+    [0,"3,50 €","t",["g"],{es:["Espinacas con garbanzos","La receta sevillana de siempre, con comino y pan frito."],en:["Spinach with chickpeas","The classic Seville recipe, with cumin and fried bread."],fr:["Épinards aux pois chiches","La recette sévillane traditionnelle, au cumin et pain frit."],de:["Spinat mit Kichererbsen","Das klassische Rezept aus Sevilla, mit Kreuzkümmel und Röstbrot."]}],
+    [0,"2,80 €","t",["g"],{es:["Montadito de pringá","Pan caliente con la carne del puchero, deshecha a fuego lento."],en:["Pringá slider","Warm bread filled with slow-cooked stew meats."],fr:["Montadito de pringá","Petit pain chaud garni des viandes du pot-au-feu."],de:["Montadito de pringá","Warmes Brötchen mit langsam geschmortem Eintopffleisch."]}],
+    [1,"16 €","p",["c","m"],{es:["Paella de mariscos","Mínimo dos personas. La hacemos al momento: unos 25 minutos."],en:["Seafood paella","Minimum two people. Cooked to order: about 25 minutes."],fr:["Paella aux fruits de mer","Pour deux personnes minimum. Préparée à la minute : environ 25 minutes."],de:["Meeresfrüchte-Paella","Ab zwei Personen. Frisch zubereitet: etwa 25 Minuten."]}],
+    [1,"14 €","",["p","g"],{es:["Pescaíto frito","Adobo, boquerones y calamares, fritos como se hace en Andalucía."],en:["Andalusian fried fish","Marinated dogfish, anchovies and squid, fried the Andalusian way."],fr:["Friture andalouse","Poisson mariné, anchois et calamars, frits à l'andalouse."],de:["Andalusischer Backfisch","Marinierter Fisch, Sardellen und Tintenfisch, nach andalusischer Art frittiert."]}],
+    [1,"12 €","",[],{es:["Costillas a la miel","Costillas de cerdo al horno con miel de caña."],en:["Honey pork ribs","Oven-roasted pork ribs glazed with cane honey."],fr:["Travers de porc au miel","Travers de porc rôtis au four, laqués au miel de canne."],de:["Schweinerippchen mit Honig","Im Ofen gebackene Rippchen mit Zuckerrohrhonig."]}],
+    [2,"4,50 €","",["g","h","l"],{es:["Torrijas","Pan empapado en leche, frito y bañado en miel."],en:["Torrijas","Bread soaked in milk, fried and drizzled with honey."],fr:["Torrijas","Pain trempé dans le lait, frit et nappé de miel."],de:["Torrijas","In Milch getränktes Brot, frittiert und mit Honig übergossen."]}],
+    [2,"4 €","",["h"],{es:["Tocino de cielo","Flan de yema y caramelo, receta de convento."],en:["Tocino de cielo","Egg-yolk caramel custard, an old convent recipe."],fr:["Tocino de cielo","Flan aux jaunes d'œufs et caramel, recette de couvent."],de:["Tocino de cielo","Eigelb-Karamellpudding nach altem Klosterrezept."]}],
+    [3,"1,80 €","",[],{es:["Caña de cerveza","Bien fría, como debe ser."],en:["Small draught beer","Ice-cold, as it should be."],fr:["Petite bière pression","Bien fraîche, comme il se doit."],de:["Kleines Bier vom Fass","Eiskalt, wie es sich gehört."]}],
+    [3,"2,50 €","",["s"],{es:["Tinto de verano","Vino tinto con gaseosa de limón y hielo."],en:["Tinto de verano","Red wine with lemon soda and ice."],fr:["Tinto de verano","Vin rouge, limonade au citron et glaçons."],de:["Tinto de verano","Rotwein mit Zitronenlimonade und Eis."]}],
+    [3,"2,50 €","",["s"],{es:["Manzanilla de Sanlúcar","Vino seco y fresquito, el de la Feria."],en:["Manzanilla sherry","Dry, chilled sherry from Sanlúcar, the Feria favourite."],fr:["Manzanilla","Xérès sec et frais de Sanlúcar, celui de la Feria."],de:["Manzanilla","Trockener, gekühlter Sherry aus Sanlúcar, der Klassiker der Feria."]}]
+  ];
+  var cont=document.getElementById("carta"),nav=document.getElementById("cats");
+  function pinta(l){
+    var t=T[l];document.documentElement.lang=l;
+    document.getElementById("t-sub").textContent=t.sub;document.getElementById("t-aviso").textContent=t.aviso;
+    nav.innerHTML="";cont.innerHTML="";
+    t.cats.forEach(function(nombre,i){
+      var a=document.createElement("a");a.href="#cat"+i;a.textContent=nombre;nav.appendChild(a);
+      var s=document.createElement("section");s.className="cat";s.id="cat"+i;var h=document.createElement("h2");h.textContent=nombre;s.appendChild(h);
+      CARTA.filter(function(p){return p[0]===i}).forEach(function(p){
+        var d=document.createElement("div");d.className="plato";
+        var tx=p[4][l],pre=p[1]+(p[2]==="t"?" · "+t.tapa:p[2]==="p"?" · "+t.pp:"");
+        var b=document.createElement("b");b.textContent=tx[0];var pr=document.createElement("span");pr.className="pre";pr.textContent=pre;
+        var de=document.createElement("p");de.className="desc";de.textContent=tx[1];
+        d.appendChild(b);d.appendChild(pr);d.appendChild(de);
+        if(p[3].length){var al=document.createElement("div");al.className="al";p[3].forEach(function(k){var sp=document.createElement("span");sp.textContent=t.al[k];al.appendChild(sp)});d.appendChild(al)}
+        s.appendChild(d)});
+      cont.appendChild(s)});
+    document.querySelectorAll(".idiomas button").forEach(function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-l")===l))});
+  }
+  document.querySelectorAll(".idiomas button").forEach(function(b){b.addEventListener("click",function(){pinta(b.getAttribute("data-l"))})});
+  var nav_l=(navigator.language||"es").slice(0,2).toLowerCase();
+  pinta(T[nav_l]?nav_l:"es");
+  try{new QRCode(document.getElementById("qr"),{text:location.href.split("#")[0],width:160,height:160,colorDark:"#1c2440",colorLight:"#ffffff"})}catch(e){document.getElementById("qr").textContent="QR"}
+})();
+</script>
+</body>
+</html>

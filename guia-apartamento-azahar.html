@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Apartamento Azahar · Guía del huésped</title>
+<meta name="description" content="Guía digital para huéspedes de pisos turísticos: wifi, llegada, normas, recomendaciones y contacto. En español e inglés.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,800&display=swap">
+<style>
+/* Guía del huésped: blanco, verde naranjo y azahar (crema anaranjada) */
+:root{--fondo:#f8f7f2;--blanco:#fff;--tinta:#203026;--verde:#2f6b4f;--verde-2:#e4efe8;--azahar:#f2a65a;--azahar-2:#fdf1e4;--gris:#5f6a63;--linea:#e2e4dc;--display:"Playfair Display",Georgia,serif;--texto:"Nunito Sans","Segoe UI",system-ui,sans-serif;color-scheme:light}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--fondo);color:var(--tinta);font-family:var(--texto);font-size:16px;line-height:1.6}
+.wrap{max-width:860px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.1;margin:0}
+p{margin:0}
+:focus-visible{outline:3px solid var(--azahar);outline-offset:2px;border-radius:6px}
+.demo{background:var(--tinta);color:#dbe6df;font-size:.8rem;text-align:center;padding:7px 16px;padding-top:calc(7px + env(safe-area-inset-top,0px))}
+.demo b{color:#fff}
+.barra-top{position:sticky;top:0;z-index:20;background:rgba(248,247,242,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--linea)}
+.barra-top .wrap{display:flex;align-items:center;gap:10px;padding-block:10px}
+.barra-top b{font-family:var(--display);font-size:1.1rem;margin-right:auto}
+.idi button{font:800 .85rem var(--texto);padding:7px 12px;border-radius:999px;border:1.5px solid var(--linea);background:#fff;color:var(--tinta);cursor:pointer}
+.idi button[aria-pressed="true"]{background:var(--verde);border-color:var(--verde);color:#fff}
+.hero{position:relative}
+.hero img{width:100%;height:clamp(220px,42vw,360px);object-fit:cover}
+.hero .in{background:var(--blanco);margin:-48px 16px 0;position:relative;border-radius:20px;padding:20px 22px;box-shadow:0 14px 34px rgba(32,48,38,.12);max-width:828px}
+@media (min-width:892px){.hero .in{margin:-48px auto 0}}
+.hero h1{font-size:clamp(1.9rem,5.4vw,2.6rem)}
+.hero p{color:var(--gris);margin-top:6px}
+.rapido{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:22px}
+.r{background:var(--blanco);border:1px solid var(--linea);border-radius:16px;padding:14px}
+.r small{display:block;font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--verde)}
+.r b{display:block;font-size:1.05rem;margin-top:2px;word-break:break-word}
+.r button{margin-top:8px;font:800 .82rem var(--texto);padding:6px 10px;border-radius:999px;border:0;background:var(--verde-2);color:var(--verde);cursor:pointer}
+@media (max-width:700px){.rapido{grid-template-columns:1fr 1fr}}
+.secciones{display:flex;gap:14px;overflow-x:auto;padding-block:18px 0;font-weight:800;font-size:.9rem}
+.secciones a{white-space:nowrap;color:var(--gris);text-decoration:none}
+section{padding-top:34px}
+section h2{font-size:1.7rem;margin-bottom:12px}
+.pasos{display:grid;gap:10px;counter-reset:p}
+.paso{display:grid;grid-template-columns:38px 1fr;gap:12px;align-items:start;background:var(--blanco);border:1px solid var(--linea);border-radius:16px;padding:14px}
+.paso::before{counter-increment:p;content:counter(p);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--azahar);font-weight:800}
+.paso p{color:var(--gris)}
+.paso b{display:block;color:var(--tinta)}
+.lista{background:var(--blanco);border:1px solid var(--linea);border-radius:16px;padding:6px 18px}
+.lista .it{padding:12px 0;border-bottom:1px solid var(--linea)}
+.lista .it:last-child{border-bottom:0}
+.lista .it b{display:block}
+.lista .it p{color:var(--gris);font-size:.95rem}
+.recs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.rec{background:var(--blanco);border:1px solid var(--linea);border-radius:16px;overflow:hidden}
+.rec img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.rec .c{padding:14px}
+.rec small{color:var(--verde);font-weight:800}
+.rec p{color:var(--gris);font-size:.94rem}
+@media (max-width:640px){.recs{grid-template-columns:1fr}}
+.urg{background:var(--azahar-2);border:1px solid #f3d6b4;border-radius:16px;padding:16px 18px}
+.urg b{font-size:1.2rem}
+.contacto{margin-top:34px;background:var(--verde);color:#fff;border-radius:20px;padding:22px;display:grid;gap:10px}
+.contacto h2{color:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:12px;padding:12px 18px;font:800 .98rem var(--texto);text-decoration:none;border:0;cursor:pointer;background:#fff;color:var(--verde);justify-self:start}
+.anfitrion{margin-top:34px;padding:22px;border-radius:20px;background:var(--blanco);border:1px dashed #c9d3cb}
+.anfitrion small{font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--azahar);font-size:.74rem}
+.anfitrion h3{font-size:1.4rem;margin:6px 0 8px}
+.anfitrion ul{margin:0;padding-left:18px;color:var(--gris);display:grid;gap:4px}
+footer{padding-block:30px 40px;color:var(--gris);font-size:.86rem;text-align:center}
+footer b{color:var(--verde)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--tinta);color:#fff;padding:10px 16px;border-radius:999px;font-weight:700;font-size:.9rem;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.on{opacity:1}
+</style>
+</head>
+<body>
+<div class="demo">Web de muestra hecha por <b>Monty Web</b>. El apartamento y los datos son de ejemplo.</div>
+
+<div class="barra-top"><div class="wrap"><b>Apartamento Azahar</b><span class="idi" role="group" aria-label="Idioma / Language"><button type="button" data-l="es" aria-pressed="true">ES</button> <button type="button" data-l="en">EN</button></span></div></div>
+
+<header class="hero">
+  <img src="img/piso-hero.jpg" alt="Salón luminoso con cocina abierta" width="1200" height="800">
+  <div class="in">
+    <h1 data-en="Welcome to Apartamento Azahar">Bienvenidos al Apartamento Azahar</h1>
+    <p data-en="Everything you need for your stay in Seville, in one place. Save this page on your phone.">Todo lo que necesitáis para vuestra estancia en Sevilla, en un solo sitio. Guardad esta página en el móvil.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="rapido">
+    <div class="r"><small>Wifi</small><b>Azahar_Guest</b><span style="color:var(--gris);font-size:.9rem" data-en="Password:">Clave:</span> <b style="display:inline" id="clave">sevilla2027</b><br><button type="button" id="copiar" data-en="Copy password">Copiar clave</button></div>
+    <div class="r"><small data-en="Check-in">Llegada</small><b data-en="From 3 pm">Desde las 15:00</b></div>
+    <div class="r"><small data-en="Check-out">Salida</small><b data-en="Before 11 am">Antes de las 11:00</b></div>
+    <div class="r"><small data-en="Key box">Caja de llaves</small><b data-en="Code sent on arrival day">Código el día de llegada</b></div>
+  </div>
+
+  <nav class="secciones" aria-label="Secciones"><a href="#llegada" data-en="Arrival">Llegada</a><a href="#normas" data-en="House rules">Normas</a><a href="#casa" data-en="The flat">La casa</a><a href="#cerca" data-en="Nearby">Qué ver</a><a href="#moverse" data-en="Getting around">Moverse</a><a href="#salida" data-en="Check-out">Salida</a></nav>
+
+  <section id="llegada">
+    <h2 data-en="Arrival, step by step">La llegada, paso a paso</h2>
+    <div class="pasos">
+      <div class="paso"><p><b data-en="Find the door">Encontrad el portal</b><span data-en="Calle Ejemplo, 5. Blue door with a tiled frame, next to the bakery.">Calle Ejemplo, 5. Puerta azul con azulejos, al lado de la panadería.</span></p></div>
+      <div class="paso"><p><b data-en="Open the key box">Abrid la caja de llaves</b><span data-en="It's on the right of the door. We send you the code by WhatsApp on your arrival day.">Está a la derecha del portal. El código os lo mandamos por WhatsApp el día de llegada.</span></p></div>
+      <div class="paso"><p><b data-en="Second floor, door B">Segundo piso, puerta B</b><span data-en="There's a lift. The small key is for the main door, the big one for the flat.">Hay ascensor. La llave pequeña es del portal y la grande, del piso.</span></p></div>
+    </div>
+  </section>
+
+  <section id="normas">
+    <h2 data-en="House rules">Normas de la casa</h2>
+    <div class="lista">
+      <div class="it"><b data-en="No smoking">No se fuma</b><p data-en="Not even on the balcony, please.">Tampoco en el balcón, por favor.</p></div>
+      <div class="it"><b data-en="Quiet hours from 10 pm to 8 am">Silencio de 22:00 a 8:00</b><p data-en="Our neighbours are lovely: let's keep it that way.">Los vecinos son encantadores: que siga así.</p></div>
+      <div class="it"><b data-en="No parties">No se permiten fiestas</b><p data-en="Maximum 4 guests.">Máximo 4 huéspedes.</p></div>
+      <div class="it"><b data-en="Rubbish">La basura</b><p data-en="The bins are on the corner of the street. Separate plastic, paper and glass, please.">Los contenedores están en la esquina de la calle. Separad plástico, papel y vidrio, por favor.</p></div>
+    </div>
+  </section>
+
+  <section id="casa">
+    <h2 data-en="How things work">Cómo funciona la casa</h2>
+    <div class="lista">
+      <div class="it"><b data-en="Air conditioning">Aire acondicionado</b><p data-en="The remote is on the living room shelf. Please switch it off when you go out.">El mando está en la estantería del salón. Apagadlo al salir, por favor.</p></div>
+      <div class="it"><b data-en="Hob and oven">Vitrocerámica y horno</b><p data-en="Press the power button for 2 seconds, then choose the ring.">Mantened pulsado el botón de encendido 2 segundos y elegid el fuego.</p></div>
+      <div class="it"><b data-en="Washing machine">Lavadora</b><p data-en="Detergent under the sink. Quick programme: 30 minutes.">El detergente está bajo el fregadero. Programa rápido: 30 minutos.</p></div>
+      <div class="it"><b data-en="Towels and bedding">Toallas y sábanas</b><p data-en="There's a spare set in the bedroom wardrobe.">Hay un juego de repuesto en el armario del dormitorio.</p></div>
+    </div>
+  </section>
+
+  <section id="cerca">
+    <h2 data-en="Our favourite places nearby">Lo que más nos gusta de por aquí</h2>
+    <div class="recs">
+      <div class="rec"><img src="img/piso-salon.jpg" alt="" loading="lazy"><div class="c"><small data-en="10 min walk">10 min andando</small><h3 data-en="Cathedral and Giralda">Catedral y Giralda</h3><p data-en="Book tickets online to skip the queue. Go up the Giralda at sunset.">Comprad la entrada por internet para no hacer cola. Subid a la Giralda al atardecer.</p></div></div>
+      <div class="rec"><img src="img/piso-paella.jpg" alt="" loading="lazy"><div class="c"><small data-en="Where to eat">Dónde comer</small><h3 data-en="Tapas around the corner">Tapas a la vuelta de la esquina</h3><p data-en="Ask us by WhatsApp and we'll send you our three favourite bars, with what to order.">Preguntadnos por WhatsApp y os mandamos nuestros tres bares favoritos, con lo que hay que pedir.</p></div></div>
+      <div class="rec"><img src="img/piso-dormitorio.jpg" alt="" loading="lazy"><div class="c"><small data-en="20 min walk">20 min andando</small><h3>Plaza de España</h3><p data-en="Best in the morning or late afternoon. The María Luisa park is right next to it.">Mejor por la mañana o a última hora de la tarde. Al lado tenéis el parque de María Luisa.</p></div></div>
+      <div class="rec"><img src="img/piso-hero.jpg" alt="" loading="lazy"><div class="c"><small data-en="15 min walk">15 min andando</small><h3>Triana</h3><p data-en="Cross the Isabel II bridge. Market in the morning, flamenco at night.">Cruzad el puente de Isabel II. Mercado por la mañana y flamenco por la noche.</p></div></div>
+    </div>
+  </section>
+
+  <section id="moverse">
+    <h2 data-en="Getting around">Cómo moverse</h2>
+    <div class="lista">
+      <div class="it"><b data-en="Airport">Aeropuerto</b><p data-en="Airport bus (EA line) every 20–30 minutes, about 35 minutes to the centre. A taxi has a fixed fare to the centre.">Autobús del aeropuerto (línea EA) cada 20–30 minutos, unos 35 minutos hasta el centro. El taxi tiene tarifa fija al centro.</p></div>
+      <div class="it"><b data-en="Train station">Estación de tren</b><p data-en="Santa Justa station: 10 minutes by taxi.">Estación de Santa Justa: 10 minutos en taxi.</p></div>
+      <div class="it"><b data-en="Parking">Aparcamiento</b><p data-en="Public car park 300 m away. The old town has restricted traffic.">Parking público a 300 metros. El casco antiguo tiene el tráfico restringido.</p></div>
+    </div>
+  </section>
+
+  <section id="salida">
+    <h2 data-en="Check-out">La salida</h2>
+    <div class="pasos">
+      <div class="paso"><p><b data-en="Before 11 am">Antes de las 11:00</b><span data-en="If you need a little longer, ask us: we'll try to help.">Si necesitáis algo más de tiempo, preguntadnos e intentamos ayudaros.</span></p></div>
+      <div class="paso"><p><b data-en="Switch off and close">Apagad y cerrad</b><span data-en="Air conditioning, lights and windows.">Aire acondicionado, luces y ventanas.</span></p></div>
+      <div class="paso"><p><b data-en="Keys back in the box">Las llaves, a la caja</b><span data-en="Close it and turn the numbers. That's it. Safe travels!">Cerradla y moved los números. Listo. ¡Buen viaje!</span></p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="urg"><b data-en="Emergencies: 112">Emergencias: 112</b><p data-en="Pharmacy on the corner of the square, open until 10 pm. Nearest hospital: 10 minutes by taxi.">Farmacia en la esquina de la plaza, abierta hasta las 22:00. Hospital más cercano: 10 minutos en taxi.</p></div>
+  </section>
+
+  <div class="contacto">
+    <h2 data-en="Any questions?">¿Alguna duda?</h2>
+    <p data-en="Write to us on WhatsApp. We usually reply in a few minutes.">Escribidnos por WhatsApp. Solemos contestar en unos minutos.</p>
+    <button class="btn" type="button" id="wa" data-en="Message the host">Escribir al anfitrión</button>
+  </div>
+
+  <div class="anfitrion">
+    <small>Para propietarios de pisos turísticos</small>
+    <h3>Tu guía del huésped, en el móvil de cada huésped</h3>
+    <ul>
+      <li>Menos mensajes repetidos: el wifi, la llegada y las normas, siempre a mano.</li>
+      <li>En español e inglés, y en más idiomas si los necesitas.</li>
+      <li>Con tus recomendaciones y las fotos de tu piso.</li>
+      <li>Un enlace o un QR que mandas con la reserva. Si cambia algo, lo cambio yo.</li>
+    </ul>
+  </div>
+</main>
+
+<footer>Web de muestra diseñada por <b>Monty Web</b>. Guías digitales para pisos turísticos.</footer>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+  var els=[].slice.call(document.querySelectorAll("[data-en]"));
+  els.forEach(function(e){e.setAttribute("data-es",e.textContent)});
+  var lang="es";
+  function poner(l){lang=l;document.documentElement.lang=l;els.forEach(function(e){e.textContent=e.getAttribute("data-"+l)});document.querySelectorAll(".idi button").forEach(function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-l")===l))})}
+  document.querySelectorAll(".idi button").forEach(function(b){b.addEventListener("click",function(){poner(b.getAttribute("data-l"))})});
+  if((navigator.language||"es").slice(0,2).toLowerCase()!=="es")poner("en");
+  var t=document.getElementById("toast");
+  function aviso(x){t.textContent=x;t.classList.add("on");setTimeout(function(){t.classList.remove("on")},2400)}
+  document.getElementById("copiar").addEventListener("click",function(){var c=document.getElementById("clave").textContent;var ok=function(){aviso(lang==="es"?"Clave copiada":"Password copied")};if(navigator.clipboard)navigator.clipboard.writeText(c).then(ok,ok);else ok()});
+  document.getElementById("wa").addEventListener("click",function(){aviso(lang==="es"?"En la web real, esto abre WhatsApp con el anfitrión":"In the real site, this opens WhatsApp with the host")});
+})();
+</script>
+</body>
+</html>
