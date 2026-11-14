@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Autoescuela Lepanto · propuesta de web</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Academia en Mairena del Aljarafe: refuerzo de Primaria a Bachillerato, inglés y Selectividad en grupos de 6. Encuentra tu grupo y prueba una clase gratis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap">
+<style>
+/* Layout: cuaderno cálido — papel crema, azul tinta y el ámbar del candil; buscador de grupos con plazas libres, cursos en fichas y clase de prueba */
+:root{
+  --papel:#fbf7ef;
+  --blanco:#ffffff;
+  --tinta:#1d2a44;
+  --ambar:#e3a21a;
+  --ambar-2:#fbecc8;
+  --teja:#c4553b;
+  --gris:#5d6577;
+  --linea:#eadfca;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --texto:"Nunito Sans", "Segoe UI", system-ui, sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{background:var(--papel);color:var(--tinta);font-family:var(--texto);font-size:16px;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--papel)}
+.wrap{max-width:1120px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;margin:0;text-wrap:balance;letter-spacing:-.02em}
+p{margin:0}
+img{height:auto}
+.eti{font-size:.76rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--teja)}
+:focus-visible{outline:3px solid var(--ambar);outline-offset:2px;border-radius:6px}
+
+.demo{background:var(--tinta);color:#dfe4f0;font-size:.8rem;text-align:center}
+.demo .wrap{padding-block:7px}
+.demo b{color:var(--ambar)}
+
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(251,247,239,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--linea)}
+header.top .wrap{display:flex;align-items:center;gap:20px;padding-block:12px}
+.marca{text-decoration:none;margin-right:auto;line-height:1.05;display:flex;align-items:center;gap:10px}
+.marca svg{flex:none}
+.marca b{display:block;font-family:var(--display);font-weight:800;font-size:1.4rem;letter-spacing:-.02em}
+.marca small{display:block;font-size:.72rem;font-weight:700;color:var(--gris)}
+nav.menu{display:flex;gap:22px;font-weight:700;font-size:.94rem}
+nav.menu a{text-decoration:none;color:var(--gris)}
+nav.menu a:hover{color:var(--teja)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;padding:12px 22px;font:800 .98rem var(--texto);text-decoration:none;cursor:pointer;border:2px solid transparent;transition:transform .15s,box-shadow .15s;background:none;color:inherit}
+.btn:hover{transform:translateY(-1px)}
+.btn-1{background:var(--tinta);color:#fff;box-shadow:0 3px 0 var(--ambar)}
+.btn-2{color:var(--tinta);border-color:var(--tinta)}
+.btn-am{background:var(--ambar);color:var(--tinta)}
+.btn-sm{padding:9px 16px;font-size:.9rem}
+@media (max-width:900px){nav.menu{display:none}header.top .btn-sm{display:none}}
+
+/* portada */
+.hero{padding-block:40px 30px}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center}
+.hero h1{font-size:clamp(2.7rem,6.6vw,4.9rem)}
+.hero h1 mark{background:linear-gradient(transparent 58%,var(--ambar-2) 58%);color:inherit;padding-inline:.06em}
+.hero .lema{font-size:1.15rem;color:var(--gris);margin-top:16px;max-width:42ch}
+.estado{display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:8px 14px;border-radius:999px;background:#fff;border:1px solid var(--linea);font-weight:800;font-size:.92rem}
+.estado i{width:9px;height:9px;border-radius:50%;background:#2e9e66;box-shadow:0 0 0 4px rgba(46,158,102,.18)}
+.estado.cerrado i{background:var(--teja);box-shadow:0 0 0 4px rgba(196,85,59,.18)}
+.acciones{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.foto{position:relative;min-width:0}
+.foto img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:24px;border:6px solid #fff;box-shadow:0 18px 40px rgba(29,42,68,.14);transform:rotate(1.2deg)}
+.foto .chip{position:absolute;left:-12px;bottom:26px;background:var(--ambar);color:var(--tinta);border-radius:14px;padding:12px 16px;font-size:.88rem;line-height:1.35;font-weight:700;max-width:230px;transform:rotate(-2deg)}
+.foto .chip b{display:block;font-family:var(--display);font-size:1.1rem}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr;gap:26px}.foto{order:-1;max-width:460px;margin-inline:auto;width:100%}.foto .chip{left:8px;bottom:14px}.hero{padding-block:22px 20px}}
+
+.datos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:42px}
+.dato{padding:18px 20px;border-radius:16px;background:#fff;border:1px solid var(--linea)}
+.dato b{display:block;font-family:var(--display);font-size:1.9rem;line-height:1}
+.dato span{color:var(--gris);font-size:.93rem}
+@media (max-width:700px){.datos{grid-template-columns:1fr}}
+
+section{padding-block:64px}
+.cab{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:16px;margin-bottom:28px}
+.cab h2{font-size:clamp(2.1rem,4.6vw,3.2rem);margin-top:8px}
+.cab p{color:var(--gris);max-width:46ch}
+
+/* cursos */
+.cursos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.curso{display:flex;flex-direction:column;gap:10px;padding:22px;border-radius:18px;background:#fff;border:1px solid var(--linea);min-width:0}
+.curso h3{font-size:1.5rem}
+.curso p{color:var(--gris);font-size:.95rem}
+.curso .pie{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:auto;padding-top:12px;border-top:1px dashed var(--linea)}
+.curso .precio{font-weight:800}
+.curso .precio small{font-weight:600;color:var(--gris)}
+.plazas{display:inline-flex;align-self:flex-start;padding:4px 10px;border-radius:999px;font-size:.78rem;font-weight:800;background:#e5f4ea;color:#1f6a40}
+.plazas.pocas{background:var(--ambar-2);color:#7a4d00}
+.plazas.llena{background:#f6dfd8;color:#8c3420}
+@media (max-width:900px){.cursos{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.cursos{grid-template-columns:1fr}}
+
+/* buscador de grupo */
+.buscador{background:var(--tinta);color:#e3e8f3}
+.buscador .eti{color:var(--ambar)}
+.buscador h2{color:#fff}
+.buscador .cab p{color:#b8c2d8}
+.bus{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;align-items:start}
+.filtros{display:grid;gap:16px;padding:22px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14)}
+.filtros label{display:grid;gap:6px;font-weight:800;font-size:.92rem}
+.filtros select,.filtros input{width:100%;font:inherit;padding:11px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.25);background:#fff;color:var(--tinta)}
+.grupos{display:grid;gap:12px}
+.grupo{display:grid;grid-template-columns:1fr auto;gap:6px 14px;align-items:center;padding:16px 18px;border-radius:14px;background:#fff;color:var(--tinta);border:3px solid transparent;cursor:pointer;text-align:left;font:inherit}
+.grupo[aria-pressed="true"]{border-color:var(--ambar)}
+.grupo b{font-size:1.05rem}
+.grupo small{grid-column:1/-1;color:var(--gris)}
+.grupo:disabled{opacity:.6;cursor:not-allowed}
+.resumen{padding:14px 16px;border-radius:12px;background:#e7f6ee;color:#1d5338;font-size:.95rem}
+.resumen b{display:block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px}
+.nota{font-size:.8rem;color:var(--gris)}
+.buscador .nota{color:#aab5cc}
+@media (max-width:860px){.bus{grid-template-columns:1fr}}
+
+/* cómo trabajamos */
+.como .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.como img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:22px}
+.claves{display:grid;gap:14px;margin-top:20px}
+.clave{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start}
+.clave i{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--ambar-2);font-style:normal;font-family:var(--display);font-weight:800}
+.clave p{color:var(--gris);font-size:.95rem}
+@media (max-width:860px){.como .wrap{grid-template-columns:1fr}}
+
+/* calendario */
+.cal{background:#fff}
+.fechas{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.fecha{padding:20px;border-radius:16px;background:var(--papel);border:1px solid var(--linea)}
+.fecha b{display:block;font-family:var(--display);font-size:1.3rem;color:var(--teja)}
+.fecha p{color:var(--gris);font-size:.94rem;margin-top:4px}
+@media (max-width:900px){.fechas{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.fechas{grid-template-columns:1fr}}
+
+/* profes */
+.profes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.profe{min-width:0;border-radius:18px;overflow:hidden;background:#fff;border:1px solid var(--linea)}
+.profe img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
+.profe .c{padding:16px 18px}
+.profe small{display:block;color:var(--teja);font-weight:800;font-size:.8rem}
+.profe p{color:var(--gris);font-size:.93rem;margin-top:4px}
+.profe .ini{display:grid;place-items:center;aspect-ratio:3/2;background:var(--ambar-2);font-family:var(--display);font-size:3rem}
+@media (max-width:860px){.profes{grid-template-columns:1fr}}
+
+/* opiniones */
+.ops{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.op{padding:22px;border-radius:18px;background:#fff;border:1px solid var(--linea);display:flex;flex-direction:column;gap:10px}
+.op .est{color:#c08a3e;letter-spacing:2px}
+.op .quien{font-weight:800}
+.op .quien small{font-weight:600;color:var(--gris)}
+@media (max-width:860px){.ops{grid-template-columns:1fr}}
+
+.faq{display:grid;gap:10px;max-width:820px}
+.faq details{background:#fff;border:1px solid var(--linea);border-radius:14px;padding:16px 18px}
+.faq summary{font-weight:800;cursor:pointer}
+.faq details p{color:var(--gris);margin-top:8px}
+
+.donde{background:#fff}
+.donde .wrap{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
+.horario{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;margin-top:6px}
+.horario td{padding:7px 0;border-bottom:1px solid var(--linea)}
+.horario td:last-child{text-align:right}
+.horario tr.hoy td{font-weight:800;color:var(--teja)}
+@media (max-width:860px){.donde .wrap{grid-template-columns:1fr}}
+
+footer{background:var(--tinta);color:#c2cadb;padding-block:36px 110px;font-size:.92rem}
+footer .wrap{display:grid;gap:14px}
+footer b{color:#fff}
+footer .legal{display:flex;flex-wrap:wrap;gap:8px 18px}
+@media (min-width:901px){footer{padding-bottom:36px}}
+
+.barra{position:fixed;left:0;right:0;bottom:0;z-index:30;display:none;background:#fff;border-top:1px solid var(--linea);padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.barra .fila{display:grid;grid-template-columns:1fr 1.5fr 1fr;gap:8px}
+.barra .btn{padding:11px 6px;font-size:.9rem;box-shadow:none}
+@media (max-width:900px){.barra{display:block}}
+
+dialog{border:0;border-radius:18px;padding:0;max-width:min(440px,calc(100vw - 32px));background:#fff;color:var(--tinta);box-shadow:0 20px 60px rgba(29,42,68,.3)}
+dialog::backdrop{background:rgba(29,42,68,.5)}
+dialog .in{padding:24px;display:grid;gap:12px}
+dialog h3{font-size:1.6rem}
+dialog pre{white-space:pre-wrap;font:inherit;background:#e7f6ee;color:#1d5338;padding:12px 14px;border-radius:10px;margin:0}
+</style>
+</head>
+<body>
+
+<div class="demo"><div class="wrap">Propuesta de web preparada por <b>Monty Web</b> para Autoescuela Lepanto. No es su web oficial: las fotos, los textos, los precios, el horario y las opiniones son de ejemplo.</div></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="marca" href="#inicio"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="10" fill="#1d2a44"/><path d="M17 7c3 4 4 6 4 8.5a4 4 0 0 1-8 0C13 13 14 11 17 7z" fill="#e3a21a"/><rect x="9" y="22" width="16" height="4" rx="2" fill="#fbecc8"/></svg><span><b>Autoescuela Lepanto</b><small>Refuerzo · Inglés · Selectividad</small></span></a>
+    <nav class="menu" aria-label="Secciones"><a href="#cursos">Cursos</a><a href="#grupo">Encuentra tu grupo</a><a href="#como">Cómo trabajamos</a><a href="#profes">Profes</a><a href="#donde">Dónde estamos</a></nav>
+    <a class="btn btn-1 btn-sm" href="#grupo">Clase de prueba</a>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eti">Academia en Mairena del Aljarafe</p>
+        <h1>Que lo <mark>entienda</mark>, no que se lo aprenda de memoria</h1>
+        <p class="lema">Refuerzo de Primaria a 2º de Bachillerato, inglés con certificado y preparación de Selectividad. Grupos de seis como mucho y la primera clase, gratis.</p>
+        <p class="estado" id="estado"><i></i><span>Abrimos de lunes a viernes por la tarde</span></p>
+        <div class="acciones"><a class="btn btn-1" href="#grupo">Probar una clase gratis</a><a class="btn btn-2" href="#cursos">Ver cursos y precios</a></div>
+      </div>
+      <div class="foto">
+        <img src="../img/academia-candil-1.jpg" alt="Profesor ayudando a un alumno con los deberes en una mesa" width="900" height="900">
+        <p class="chip"><b>Informe cada mes</b>Las familias saben cómo va por WhatsApp</p>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="datos">
+        <div class="dato"><b>6</b><span>alumnos como máximo por grupo</span></div>
+        <div class="dato"><b>1.ª clase</b><span>gratis y sin compromiso</span></div>
+        <div class="dato"><b>Aula de estudio</b><span>abierta para nuestros alumnos toda la tarde</span></div>
+      </div>
+    </div>
+  </div>
+
+  <section id="cursos">
+    <div class="wrap">
+      <div class="cab"><div><p class="eti">Cursos y precios</p><h2>Para cada etapa, su forma de estudiar</h2></div><p>Precios al mes. Sin matrícula y sin permanencia: si un mes no lo necesitas, nos avisas y listo.</p></div>
+      <div class="cursos">
+        <article class="curso"><span class="plazas">Plazas libres</span><h3>Primaria</h3><p>Refuerzo de Lengua y Mates, comprensión lectora y técnicas de estudio. Hacemos los deberes con ellos.</p><div class="pie"><span class="precio">55 € <small>/ mes · 2 días</small></span></div></article>
+        <article class="curso"><span class="plazas pocas">Quedan 3 plazas</span><h3>ESO</h3><p>Todas las asignaturas, con un profe por materia. Repasamos antes de cada examen y organizamos la semana.</p><div class="pie"><span class="precio">65 € <small>/ mes · 3 días</small></span></div></article>
+        <article class="curso"><span class="plazas pocas">Quedan 2 plazas</span><h3>Bachillerato</h3><p>Matemáticas, Física, Química, Lengua, Historia e Inglés. Por asignatura, en grupos de su mismo curso.</p><div class="pie"><span class="precio">40 € <small>/ mes · por asignatura</small></span></div></article>
+        <article class="curso"><span class="plazas">Empieza en febrero</span><h3>Selectividad</h3><p>Intensivo de febrero a junio con simulacros de examen reales cada mes y corrección como en la prueba.</p><div class="pie"><span class="precio">90 € <small>/ mes</small></span></div></article>
+        <article class="curso"><span class="plazas">Plazas libres</span><h3>Inglés B1, B2 y C1</h3><p>Preparación de certificados oficiales con speaking cada semana. Para adolescentes y adultos.</p><div class="pie"><span class="precio">60 € <small>/ mes · 2 h a la semana</small></span></div></article>
+        <article class="curso"><span class="plazas llena">Lista de espera</span><h3>Clases particulares</h3><p>Una hora a solas con el profe, para recuperar una asignatura o preparar un examen concreto.</p><div class="pie"><span class="precio">20 € <small>/ hora</small></span></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="buscador" id="grupo">
+    <div class="wrap">
+      <div class="cab"><div><p class="eti">Encuentra tu grupo</p><h2>Elige curso y asignatura y mira los huecos</h2></div><p>Te reservamos la clase de prueba en el grupo que te venga bien. Sin pagar nada.</p></div>
+      <div class="bus">
+        <div class="filtros">
+          <label>Curso<select id="g-curso"></select></label>
+          <label>Asignatura<select id="g-asig"></select></label>
+          <label>Nombre del alumno<input id="g-nombre" type="text" placeholder="Nombre" autocomplete="off"></label>
+          <div class="resumen" aria-live="polite"><b>Nos llega esto por WhatsApp</b><span id="g-resumen"></span></div>
+          <button class="btn btn-am" type="button" id="g-enviar">Reservar clase de prueba</button>
+        </div>
+        <div>
+          <div class="grupos" id="g-lista" role="group" aria-label="Grupos disponibles"></div>
+          <p class="nota" style="margin-top:10px">Horarios y plazas de ejemplo. En la web real se actualizan cada vez que se llena un grupo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="como" id="como">
+    <div class="wrap">
+      <img src="../img/academia-candil-2.jpg" alt="Alumnos estudiando juntos con portátiles alrededor de una mesa" loading="lazy">
+      <div>
+        <p class="eti">Cómo trabajamos</p>
+        <h2 style="font-size:clamp(2.1rem,4.6vw,3.2rem);margin-top:8px">Poco a poco, pero cada semana</h2>
+        <div class="claves">
+          <div class="clave"><i>1</i><div><b>Vemos de dónde parte</b><p>Una prueba corta el primer día para saber qué domina y qué no. Así no perdemos tiempo.</p></div></div>
+          <div class="clave"><i>2</i><div><b>Grupos por nivel</b><p>Seis alumnos del mismo curso como mucho. El profe tiene tiempo para cada uno.</p></div></div>
+          <div class="clave"><i>3</i><div><b>Las familias, al tanto</b><p>Cada mes os mandamos un informe por WhatsApp: qué ha trabajado, notas y en qué flojea.</p></div></div>
+          <div class="clave"><i>4</i><div><b>Exámenes de prueba</b><p>Antes de cada evaluación hacemos simulacros con el mismo formato que en su instituto.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cal">
+    <div class="wrap">
+      <div class="cab"><div><p class="eti">Durante el curso</p><h2>Fechas que conviene apuntar</h2></div></div>
+      <div class="fechas">
+        <div class="fecha"><b>Diciembre</b><p>Repaso intensivo antes de los exámenes de la primera evaluación.</p></div>
+        <div class="fecha"><b>Febrero</b><p>Arranca el grupo de Selectividad. Las plazas se cubren pronto.</p></div>
+        <div class="fecha"><b>Mayo</b><p>Simulacros de Selectividad los sábados por la mañana.</p></div>
+        <div class="fecha"><b>Julio</b><p>Escuela de verano y preparación de las recuperaciones.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="profes">
+    <div class="wrap">
+      <div class="cab"><div><p class="eti">El equipo</p><h2>Quién da las clases</h2></div></div>
+      <div class="profes">
+        <article class="profe"><img src="../img/academia-candil-3.jpg" alt="Profesora sonriendo delante de la pizarra" loading="lazy"><div class="c"><b>Marta</b><small>Matemáticas y Física</small><p>Ingeniera. Directora de la academia y especialista en que las mates dejen de dar miedo.</p></div></article>
+        <article class="profe"><img src="../img/academia-candil-4.jpg" alt="Profesora leyendo un libro con un niño en la biblioteca" loading="lazy"><div class="c"><b>Pilar</b><small>Primaria, Lengua e Historia</small><p>Maestra. Lleva los grupos de Primaria y las técnicas de estudio.</p></div></article>
+        <article class="profe"><img src="../img/academia-candil-5.jpg" alt="Grupo pequeño de alumnos conversando en clase de inglés" loading="lazy"><div class="c"><b>Claire</b><small>Inglés</small><p>Nativa y examinadora. Prepara B1, B2 y C1 con speaking cada semana.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="cab"><div><p class="eti">Lo que dicen las familias</p><h2>4,9 de 5 en Google</h2></div></div>
+      <div class="ops">
+        <article class="op"><div class="est">★★★★★</div><p>Mi hijo pasó de suspender Matemáticas a sacar un 7. Y lo mejor: ahora va contento.</p><p class="quien">Carmen R. <small>· madre de alumno de 3.º ESO</small></p></article>
+        <article class="op"><div class="est">★★★★★</div><p>El informe de cada mes es genial. Sabemos en qué va bien y en qué hay que apretar.</p><p class="quien">José Antonio M. <small>· padre de alumna de 6.º</small></p></article>
+        <article class="op"><div class="est">★★★★★</div><p>Me preparé Selectividad aquí y entré en Enfermería. Los simulacros me quitaron los nervios.</p><p class="quien">Lucía F. <small>· exalumna</small></p></article>
+      </div>
+      <p class="nota" style="margin-top:14px">Opiniones de ejemplo para esta muestra. En la web real se muestran las vuestras de Google.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="cab"><div><p class="eti">Preguntas frecuentes</p><h2>Antes de apuntarle</h2></div></div>
+      <div class="faq">
+        <details><summary>¿La primera clase es gratis de verdad?</summary><p>Sí. Viene, prueba con su grupo y después decidís. Sin dar datos de pago.</p></details>
+        <details><summary>¿Hay matrícula o permanencia?</summary><p>No. Se paga mes a mes y, si un mes no lo necesita, nos avisáis antes del día 25.</p></details>
+        <details><summary>¿Y si falta a una clase?</summary><p>La recupera en otro grupo de su mismo curso esa misma semana, si hay hueco.</p></details>
+        <details><summary>¿Dais clases en línea?</summary><p>Sí, para Bachillerato e inglés, por videollamada y con los mismos materiales que en el aula.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="donde" id="donde">
+    <div class="wrap">
+      <div>
+        <p class="eti">Dónde estamos</p>
+        <h2 style="font-size:clamp(2.1rem,4.6vw,3.2rem);margin:8px 0 12px">Al lado de los institutos</h2>
+        <p style="font-weight:800;font-size:1.15rem">granada nº 25 · 41927 Mairena del Aljarafe (Sevilla)</p>
+        <p style="color:var(--gris);margin:8px 0 22px">A cinco minutos andando de los institutos del centro. Aparcamiento en la avenida para recoger a los niños.</p>
+        <a class="btn btn-1" href="https://www.google.com/maps/search/?api=1&amp;query=Autoescuela+Lepanto+granada+n%C2%BA+25+Mairena+del+Aljarafe" target="_blank" rel="noopener">Cómo llegar</a>
+      </div>
+      <div><p class="eti">Horario</p><table class="horario" id="horario" aria-label="Horario"><tbody></tbody></table></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b>Autoescuela Lepanto</b> · granada nº 25 · Mairena del Aljarafe (Sevilla) · 954 17 43 39</div>
+    <div class="legal"><span>Aviso legal</span><span>Política de privacidad</span><span>Sin cookies de seguimiento</span></div>
+    <div>Web de muestra diseñada por <b>Monty Web</b>. Hacemos webs para academias, clínicas, talleres y comercios.</div>
+  </div>
+</footer>
+
+<div class="barra" aria-label="Acciones rápidas"><div class="fila">
+  <a class="btn btn-2" href="#llamar" id="b-llamar">Llamar</a>
+  <a class="btn btn-1" href="#grupo">Clase gratis</a>
+  <a class="btn btn-2" href="#cursos">Precios</a>
+</div></div>
+
+<dialog id="aviso"><div class="in"><h3>Así funcionaría</h3><p id="aviso-p"></p><pre id="aviso-msg" hidden></pre><button class="btn btn-1" type="button" id="aviso-ok">Entendido</button></div></dialog>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"EducationalOrganization","name":"Autoescuela Lepanto","telephone":"+34 954 17 43 39","address":{"@type":"PostalAddress","streetAddress":"granada nº 25","postalCode":"41927","addressLocality":"Mairena del Aljarafe","addressRegion":"Sevilla","addressCountry":"ES"}}
+</script>
+<script>
+(function(){
+  var HORARIO={1:["16:00-21:00"],2:["16:00-21:00"],3:["16:00-21:00"],4:["16:00-21:00"],5:["16:00-20:00"],6:["10:00-13:00"],0:[]};
+  var NOM=["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+  var p=new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Madrid",weekday:"short",hour:"2-digit",minute:"2-digit",hour12:false}).formatToParts(new Date()),o={};
+  p.forEach(function(x){o[x.type]=x.value});
+  var D={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6}[o.weekday],M=(+o.hour%24)*60+(+o.minute);
+  function aMin(t){var a=t.split(":");return +a[0]*60+(+a[1])}
+  var tb=document.querySelector("#horario tbody");
+  [1,2,3,4,5,6,0].forEach(function(d){var tr=document.createElement("tr");if(d===D)tr.className="hoy";tr.innerHTML="<td>"+NOM[d]+(d===D?" (hoy)":"")+"</td><td>"+(HORARIO[d].length?HORARIO[d].join(" y ").replace(/-/g," – ")+(d===6?" (Selectividad y tutorías)":""):"Cerrado")+"</td>";tb.appendChild(tr)});
+  var est=document.getElementById("estado"),txt=est.querySelector("span"),cierra=null,prox=null;
+  HORARIO[D].forEach(function(r){var a=r.split("-");if(M>=aMin(a[0])&&M<aMin(a[1]))cierra=a[1];if(!prox&&M<aMin(a[0]))prox=a[0]});
+  if(cierra)txt.textContent="Abierto ahora · hasta las "+cierra;else{est.classList.add("cerrado");txt.textContent=prox?"Hoy abrimos a las "+prox:"Cerrado ahora · abrimos el próximo día lectivo a las 16:00"}
+
+  // buscador de grupos
+  var CURSOS={
+    "5.º y 6.º de Primaria":{"Refuerzo general":[["Lunes y miércoles","17:00 – 18:00",4],["Martes y jueves","17:00 – 18:00",1]],"Inglés":[["Viernes","17:00 – 18:30",3]]},
+    "1.º y 2.º de ESO":{"Matemáticas":[["Lunes y miércoles","18:00 – 19:00",2],["Martes y jueves","18:00 – 19:00",0]],"Lengua":[["Martes y jueves","19:00 – 20:00",3]],"Inglés":[["Lunes y miércoles","19:00 – 20:00",1]]},
+    "3.º y 4.º de ESO":{"Matemáticas":[["Martes y jueves","18:00 – 19:00",1],["Lunes y miércoles","19:00 – 20:00",3]],"Física y Química":[["Lunes y miércoles","18:00 – 19:00",2]],"Inglés":[["Martes y jueves","19:00 – 20:00",4]]},
+    "1.º de Bachillerato":{"Matemáticas":[["Lunes y miércoles","19:00 – 20:00",2]],"Física":[["Martes y jueves","19:00 – 20:00",0],["Viernes","16:00 – 18:00",3]],"Química":[["Martes y jueves","20:00 – 21:00",2]]},
+    "2.º de Bachillerato":{"Matemáticas II":[["Lunes y miércoles","20:00 – 21:00",1]],"Historia de España":[["Martes y jueves","17:00 – 18:00",3]],"Selectividad (desde febrero)":[["Sábados","10:00 – 13:00",5]]},
+    "Inglés adultos y certificados":{"B1":[["Martes y jueves","20:00 – 21:00",3]],"B2":[["Lunes y miércoles","20:00 – 21:00",1]],"C1":[["Viernes","18:00 – 20:00",2]]}
+  };
+  var sc=document.getElementById("g-curso"),sa=document.getElementById("g-asig"),lista=document.getElementById("g-lista"),elegido=null;
+  Object.keys(CURSOS).forEach(function(c){var op=document.createElement("option");op.value=c;op.textContent=c;sc.appendChild(op)});
+  sc.value="3.º y 4.º de ESO";
+  function asigs(){sa.innerHTML="";Object.keys(CURSOS[sc.value]).forEach(function(a){var op=document.createElement("option");op.value=a;op.textContent=a;sa.appendChild(op)});grupos()}
+  function grupos(){
+    lista.innerHTML="";elegido=null;
+    CURSOS[sc.value][sa.value].forEach(function(g){
+      var b=document.createElement("button");b.type="button";b.className="grupo";b.setAttribute("aria-pressed","false");
+      var pl=g[2]===0?"Completo":(g[2]===1?"Queda 1 plaza":"Quedan "+g[2]+" plazas");
+      b.innerHTML="<b></b><span class='plazas "+(g[2]===0?"llena":(g[2]<=2?"pocas":""))+"'>"+pl+"</span><small></small>";
+      b.querySelector("b").textContent=g[0];b.querySelector("small").textContent=g[1]+" · máximo 6 alumnos";
+      if(g[2]===0)b.disabled=true;
+      b.addEventListener("click",function(){elegido=g;lista.querySelectorAll(".grupo").forEach(function(x){x.setAttribute("aria-pressed",String(x===b))});pinta()});
+      lista.appendChild(b);
+    });
+    var primero=lista.querySelector(".grupo:not(:disabled)");if(primero)primero.click();else pinta();
+  }
+  function msg(){var nm=document.getElementById("g-nombre").value.trim()||"(nombre del alumno)";return "Hola, quería reservar una clase de prueba para "+nm+", de "+sc.value+", en "+sa.value+(elegido?" ("+elegido[0].toLowerCase()+", "+elegido[1]+")":"")+". ¡Gracias!"}
+  function pinta(){document.getElementById("g-resumen").textContent=msg()}
+  sc.addEventListener("change",asigs);sa.addEventListener("change",grupos);document.getElementById("g-nombre").addEventListener("input",pinta);
+  asigs();
+
+  var dlg=document.getElementById("aviso");
+  function aviso(t,m){document.getElementById("aviso-p").textContent=t;var pre=document.getElementById("aviso-msg");pre.hidden=!m;pre.textContent=m||"";if(dlg.showModal)dlg.showModal()}
+  document.getElementById("aviso-ok").addEventListener("click",function(){dlg.close()});
+  document.getElementById("g-enviar").addEventListener("click",function(){aviso("En la web real, este botón abre WhatsApp con la reserva ya escrita para la academia. Os contestan y listo:",msg())});
+  document.getElementById("b-llamar").addEventListener("click",function(e){e.preventDefault();aviso("En la web real, este botón llama directamente a la academia desde el móvil.")});
+})();
+</script>
+
+</body>
+</html>

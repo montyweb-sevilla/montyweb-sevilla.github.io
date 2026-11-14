@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Frutería Yoli · propuesta de web</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Panadería y confitería en San Juan de Aznalfarache: pan de horno cada mañana, dulces de temporada y tartas por encargo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap">
+<style>
+/* Layout: obrador de barrio — blanco harina, marrón corteza, amarillo trigo y verde oliva para etiquetas; hornadas del día arriba, pan y dulces en fichas, encargo de tartas */
+:root{
+  --harina:#ffffff;
+  --harina-2:#f7f3ec;
+  --corteza:#3e2616;
+  --corteza-2:#6b4a33;
+  --trigo:#e2ac34;
+  --oliva:#6f7d4c;
+  --linea:#eadfce;
+  --display:"Young Serif", Georgia, "Times New Roman", serif;
+  --texto:"Nunito Sans", "Segoe UI", system-ui, sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{background:var(--harina);color:var(--corteza);font-family:var(--texto);font-size:16px;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--harina)}
+.wrap{max-width:1120px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.08;margin:0;text-wrap:balance}
+p{margin:0}
+img{height:auto}
+.eti{font-size:.76rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--oliva)}
+:focus-visible{outline:3px solid var(--trigo);outline-offset:2px;border-radius:6px}
+
+.demo{background:var(--corteza);color:#f1e6d8;font-size:.8rem;text-align:center}
+.demo .wrap{padding-block:7px}
+.demo b{color:var(--trigo)}
+
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--linea)}
+header.top .wrap{display:flex;align-items:center;gap:20px;padding-block:12px}
+.marca{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto}
+.marca svg{flex:none}
+.marca b{display:block;font-family:var(--display);font-weight:400;font-size:1.45rem;line-height:1}
+.marca span{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--corteza-2)}
+nav.menu{display:flex;gap:22px;font-weight:700;font-size:.94rem}
+nav.menu a{text-decoration:none;color:var(--corteza-2)}
+nav.menu a:hover{color:var(--corteza)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;padding:12px 20px;font:800 .98rem var(--texto);text-decoration:none;cursor:pointer;border:2px solid transparent;transition:transform .15s;background:none}
+.btn:hover{transform:translateY(-1px)}
+.btn-1{background:var(--trigo);color:var(--corteza)}
+.btn-2{border-color:var(--corteza);color:var(--corteza)}
+.btn-sm{padding:9px 14px;font-size:.9rem}
+@media (max-width:860px){nav.menu,header.top .btn{display:none}}
+
+/* portada */
+.hero{padding-block:34px 50px}
+.hero .wrap{display:grid;grid-template-columns:1fr 1.05fr;gap:44px;align-items:center}
+.hero h1{font-size:clamp(2.7rem,6.4vw,4.6rem)}
+.hero .lema{font-size:1.15rem;color:var(--corteza-2);margin-top:14px;max-width:32ch}
+.hornadas{margin-top:24px;padding:18px 20px;border-radius:16px;background:var(--harina-2);display:grid;gap:12px}
+.hornadas .titulo{display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:800}
+.hornadas .titulo small{font-weight:600;color:var(--corteza-2)}
+.hornadas ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.hornadas li{padding:10px 8px;border-radius:12px;background:#fff;border:1px solid var(--linea);text-align:center;font-variant-numeric:tabular-nums}
+.hornadas li b{display:block;font-family:var(--display);font-size:1.5rem;font-weight:400;line-height:1.1}
+.hornadas li small{color:var(--corteza-2);font-size:.78rem}
+.hornadas li.pasada{opacity:.45}
+.hornadas li.proxima{border-color:var(--trigo);background:#fff7e3;box-shadow:0 0 0 2px var(--trigo) inset}
+.acciones{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.hero figure{margin:0;position:relative;min-width:0}
+.hero figure img{display:block;width:100%;aspect-ratio:5/4.3;object-fit:cover;border-radius:22px}
+.hero figure figcaption{position:absolute;left:16px;top:16px;background:var(--corteza);color:#fff;padding:7px 12px;border-radius:999px;font-size:.84rem;font-weight:700}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr;gap:24px}.hero figure{order:-1}.hero{padding-block:18px 40px}}
+
+section{padding-block:60px}
+.cab{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:16px;margin-bottom:26px}
+.cab h2{font-size:clamp(2.1rem,4.4vw,3rem);margin-top:6px}
+.cab p{color:var(--corteza-2);max-width:44ch}
+
+/* productos */
+.fichas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.ficha{border:1px solid var(--linea);border-radius:18px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+.ficha img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.ficha .cuerpo{padding:16px 18px 18px;display:grid;gap:6px}
+.ficha h3{font-size:1.35rem}
+.ficha ul{list-style:none;margin:6px 0 0;padding:0;display:grid}
+.ficha li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px dashed var(--linea)}
+.ficha li:last-child{border-bottom:0}
+.ficha li span:last-child{font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tag{display:inline-block;padding:2px 8px;border-radius:999px;background:#eef1e6;color:var(--oliva);font-size:.72rem;font-weight:800;letter-spacing:.04em;margin-left:6px;vertical-align:2px}
+@media (max-width:860px){.fichas{grid-template-columns:1fr}}
+
+/* temporada */
+.temporada{background:var(--harina-2)}
+.calendario{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.mes{padding:18px;border-radius:16px;background:#fff;border:1px solid var(--linea)}
+.mes small{display:block;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.72rem;color:var(--oliva)}
+.mes b{display:block;font-family:var(--display);font-weight:400;font-size:1.3rem;margin:4px 0}
+.mes p{color:var(--corteza-2);font-size:.93rem}
+.mes.ahora{border-color:var(--trigo);box-shadow:0 0 0 2px var(--trigo) inset}
+@media (max-width:860px){.calendario{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:440px){.calendario{grid-template-columns:1fr}}
+
+/* tartas */
+.tartas .wrap{display:grid;grid-template-columns:.95fr 1.05fr;gap:36px;align-items:start}
+.tartas .fotos{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tartas .fotos img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:18px}
+.tamanos{width:100%;border-collapse:collapse;margin:16px 0 22px;font-variant-numeric:tabular-nums}
+.tamanos th{text-align:left;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--corteza-2);padding:6px 0;border-bottom:2px solid var(--corteza)}
+.tamanos th:last-child,.tamanos td:last-child{text-align:right}
+.tamanos td{padding:9px 0;border-bottom:1px solid var(--linea)}
+form.enc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:22px;border-radius:18px;background:var(--harina-2)}
+form.enc label{display:flex;flex-direction:column;gap:5px;font-weight:800;font-size:.9rem}
+form.enc input,form.enc select{font:inherit;font-weight:400;padding:10px 12px;border:1px solid #dccdb6;border-radius:10px;background:#fff;color:var(--corteza);min-width:0}
+form.enc .ancho{grid-column:1/-1}
+.vista{grid-column:1/-1;padding:12px 14px;border-radius:12px;background:#eaf3e2;color:#33461d;font-size:.94rem}
+.vista b{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px}
+.aviso48{grid-column:1/-1;font-size:.85rem;color:var(--corteza-2)}
+@media (max-width:860px){.tartas .wrap{grid-template-columns:1fr}form.enc{grid-template-columns:1fr}}
+
+/* desayunos y opiniones */
+.desayuno .wrap{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
+.desayuno img{display:block;width:100%;aspect-ratio:16/11;object-fit:cover;border-radius:22px}
+.precio-grande{font-family:var(--display);font-size:3rem;line-height:1;margin:12px 0 6px}
+@media (max-width:860px){.desayuno .wrap{grid-template-columns:1fr}}
+.ops{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.op{padding:20px;border-radius:18px;border:1px solid var(--linea);display:flex;flex-direction:column;gap:8px}
+.op .est{color:var(--trigo);letter-spacing:2px}
+.op .quien{font-weight:800}
+.op .quien small{font-weight:600;color:var(--corteza-2)}
+@media (max-width:860px){.ops{grid-template-columns:1fr}}
+
+/* horario y dónde */
+.info .wrap{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.caja{padding:22px;border-radius:18px;background:var(--harina-2)}
+.horario{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.horario td{padding:7px 0;border-bottom:1px solid var(--linea)}
+.horario td:last-child{text-align:right}
+.horario tr.hoy td{font-weight:800}
+.horario tr.hoy td:first-child::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--trigo);margin-right:8px}
+@media (max-width:860px){.info .wrap{grid-template-columns:1fr}}
+
+footer{background:var(--corteza);color:#dccbb6;padding-block:34px 110px;font-size:.92rem}
+footer .wrap{display:grid;gap:14px}
+footer b{color:#fff}
+footer .legal{display:flex;flex-wrap:wrap;gap:8px 18px}
+footer .firma b{color:var(--trigo)}
+@media (min-width:861px){footer{padding-bottom:34px}}
+
+.barra{position:fixed;left:0;right:0;bottom:0;z-index:30;display:none;background:#fff;border-top:1px solid var(--linea);padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.barra .fila{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:8px}
+.barra .btn{padding:11px 6px;font-size:.9rem}
+@media (max-width:860px){.barra{display:block}}
+
+dialog{border:0;border-radius:18px;padding:0;max-width:min(440px,calc(100vw - 32px));background:#fff;color:var(--corteza);box-shadow:0 20px 60px rgba(62,38,22,.3)}
+dialog::backdrop{background:rgba(62,38,22,.5)}
+dialog .in{padding:24px;display:grid;gap:12px}
+dialog h3{font-size:1.8rem}
+dialog pre{white-space:pre-wrap;font:inherit;background:#eaf3e2;color:#33461d;padding:12px 14px;border-radius:12px;margin:0}
+</style>
+</head>
+<body>
+
+
+<div class="demo"><div class="wrap">Propuesta de web preparada por <b>Monty Web</b> para Frutería Yoli. No es su web oficial: las fotos, los textos, los precios, el horario y las opiniones son de ejemplo.</div></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="marca" href="#inicio">
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 28V8" stroke="#3e2616" stroke-width="2" fill="none" stroke-linecap="round"/><g fill="#e2ac34"><ellipse cx="11" cy="12" rx="3" ry="5" transform="rotate(-25 11 12)"/><ellipse cx="19" cy="12" rx="3" ry="5" transform="rotate(25 19 12)"/><ellipse cx="11" cy="19" rx="3" ry="5" transform="rotate(-25 11 19)"/><ellipse cx="19" cy="19" rx="3" ry="5" transform="rotate(25 19 19)"/><ellipse cx="15" cy="6" rx="2.6" ry="4.4"/></g></svg>
+      <div><b>Frutería Yoli</b><span>Panadería · Confitería</span></div>
+    </a>
+    <nav class="menu" aria-label="Secciones"><a href="#pan">Pan</a><a href="#dulces">Dulces</a><a href="#tartas">Tartas por encargo</a><a href="#info">Horario</a></nav>
+    <a class="btn btn-1 btn-sm" href="#tartas">Encargar tarta</a>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eti">Panadería en San Juan de Aznalfarache</p>
+        <h1>Pan de horno, cada mañana</h1>
+        <p class="lema">Masa madre, harina de la vega y tres hornadas al día. Y los dulces de siempre según la época del año.</p>
+        <div class="hornadas" aria-label="Hornadas de hoy">
+          <div class="titulo"><span>Hornadas de hoy</span><small id="h-estado">Pan recién hecho</small></div>
+          <ol id="h-lista">
+            <li data-h="07:00"><b>7:00</b><small>Pan y bollería</small></li>
+            <li data-h="12:00"><b>12:00</b><small>Pan de pueblo</small></li>
+            <li data-h="18:00"><b>18:00</b><small>Teleras y viena</small></li>
+          </ol>
+        </div>
+        <div class="acciones"><a class="btn btn-1" href="#tartas">Encargar una tarta</a><a class="btn btn-2" href="#pan">Ver el pan</a></div>
+      </div>
+      <figure><img src="../img/obrador-la-espiga-1.jpg" alt="Hogazas de pan con la corteza dorada recién sacadas del horno" width="1200" height="1030"><figcaption>Recién salido</figcaption></figure>
+    </div>
+  </div>
+
+  <section id="pan">
+    <div class="wrap">
+      <div class="cab"><div><p class="eti">Nuestro pan</p><h2>Lo de cada día</h2></div><p>Te lo guardamos si nos escribes antes de las 11. Los domingos, mejor encargarlo el sábado.</p></div>
+      <div class="fichas">
+        <article class="ficha"><img src="../img/obrador-la-espiga-2.jpg" alt="Hogazas de centeno con espigas de trigo" loading="lazy"><div class="cuerpo"><h3>Pan de pueblo</h3><ul><li><span>Hogaza de 1/2 kg</span><span>1,80 €</span></li><li><span>Pan de centeno <span class="tag">Masa madre</span></span><span>2,40 €</span></li><li><span>Integral con semillas</span><span>2,20 €</span></li></ul></div></article>
+        <article class="ficha"><img src="../img/obrador-la-espiga-3.jpg" alt="Dos barras de pan con greña sobre madera" loading="lazy"><div class="cuerpo"><h3>Barras y teleras</h3><ul><li><span>Telera sevillana</span><span>1,10 €</span></li><li><span>Barra de viena</span><span>0,90 €</span></li><li><span>Pan cateto</span><span>1,30 €</span></li></ul></div></article>
+        <article class="ficha"><img src="../img/obrador-la-espiga-4.jpg" alt="Hogaza enharinada sobre tela de saco" loading="lazy"><div class="cuerpo"><h3>Picos y regañás</h3><ul><li><span>Picos camperos (bolsa)</span><span>2,50 €</span></li><li><span>Regañás de aceite</span><span>2,80 €</span></li><li><span>Pan de aceite</span><span>1,50 €</span></li></ul></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="temporada" id="dulces">
+    <div class="wrap">
+      <div class="cab"><div><p class="eti">Dulces</p><h2>Cada cosa en su época</h2></div><p>La bollería la hacemos todos los días. Lo de temporada, mientras dura.</p></div>
+      <div class="fichas" style="margin-bottom:22px">
+        <article class="ficha" style="grid-column:span 1"><img src="../img/obrador-la-espiga-5.jpg" alt="Cruasanes de mantequilla recién horneados" loading="lazy"><div class="cuerpo"><h3>Bollería del día</h3><ul><li><span>Cruasán de mantequilla</span><span>1,20 €</span></li><li><span>Napolitana de chocolate</span><span>1,40 €</span></li><li><span>Magdalenas caseras (4 uds)</span><span>2,20 €</span></li></ul></div></article>
+        <article class="ficha"><div class="cuerpo"><h3>Tortas y pastas</h3><ul><li><span>Tortas de aceite (6 uds)</span><span>3,50 €</span></li><li><span>Pastas de té (1/4 kg)</span><span>4,00 €</span></li><li><span>Bizcocho de naranja</span><span>6,50 €</span></li><li><span>Piononos (4 uds)</span><span>4,80 €</span></li></ul></div></article>
+        <article class="ficha"><div class="cuerpo"><h3>Para los peques</h3><ul><li><span>Donuts glaseados</span><span>1,00 €</span></li><li><span>Palmera de chocolate</span><span>1,60 €</span></li><li><span>Caracola de crema</span><span>1,30 €</span></li><li><span>Bocadillo de merienda</span><span>2,00 €</span></li></ul></div></article>
+      </div>
+      <div class="calendario" id="calendario">
+        <div class="mes" data-meses="12,1"><small>Diciembre y enero</small><b>Roscón de Reyes</b><p>De nata, trufa o sin relleno. Encárgalo con una semana.</p></div>
+        <div class="mes" data-meses="2,3,4"><small>Cuaresma y Semana Santa</small><b>Torrijas y pestiños</b><p>De vino dulce y de leche, con miel o con azúcar.</p></div>
+        <div class="mes" data-meses="10,11"><small>Todos los Santos</small><b>Huesos de santo y buñuelos</b><p>Rellenos de crema y de chocolate.</p></div>
+        <div class="mes" data-meses="11,12"><small>Navidad</small><b>Polvorones y mantecados</b><p>De la casa, en cajas de medio kilo.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tartas" id="tartas">
+    <div class="wrap">
+      <div>
+        <p class="eti">Tartas por encargo</p>
+        <h2 style="font-size:clamp(2.1rem,4.4vw,3rem);margin:6px 0 8px">Para cumpleaños, bautizos y lo que celebres</h2>
+        <p style="color:var(--corteza-2)">Elige tamaño y sabor. Escribimos el nombre o el mensaje que quieras.</p>
+        <table class="tamanos" aria-label="Precios por tamaño"><thead><tr><th scope="col">Tamaño</th><th scope="col">Precio</th></tr></thead><tbody>
+          <tr><td>6 raciones</td><td>18 €</td></tr><tr><td>10 raciones</td><td>28 €</td></tr><tr><td>15 raciones</td><td>38 €</td></tr><tr><td>25 raciones (dos pisos)</td><td>65 €</td></tr>
+        </tbody></table>
+        <div class="fotos"><img src="../img/obrador-la-espiga-6.jpg" alt="Escaparate con tartas de frutos rojos y chocolate" loading="lazy"><img src="../img/obrador-la-espiga-7.jpg" alt="Tarta de chocolate con macarons y cartel de cumpleaños" loading="lazy"></div>
+      </div>
+      <form class="enc" id="form-enc" novalidate>
+        <label for="t-sabor">Sabor<select id="t-sabor"><option>Chocolate y trufa</option><option>Nata y fresa</option><option>Tres chocolates</option><option>Tarta de queso</option><option>Selva negra</option></select></label>
+        <label for="t-rac">Raciones<select id="t-rac"><option>6</option><option selected>10</option><option>15</option><option>25</option></select></label>
+        <label for="t-dia">Día de recogida<input id="t-dia" type="date"></label>
+        <label for="t-hora">Hora<select id="t-hora"><option>Por la mañana</option><option>Por la tarde</option></select></label>
+        <label class="ancho" for="t-texto">Texto en la tarta<input id="t-texto" type="text" placeholder="Ej.: ¡Felices 7, Lucía!" maxlength="40"></label>
+        <label class="ancho" for="t-nombre">Tu nombre<input id="t-nombre" type="text" placeholder="Nombre" autocomplete="name"></label>
+        <p class="aviso48">Encárgala con al menos 48 horas. Para dos pisos, con una semana.</p>
+        <div class="vista" aria-live="polite"><b>Así nos llega tu encargo</b><span id="t-vista"></span></div>
+        <button class="btn btn-1 ancho" type="submit">Encargar por WhatsApp</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="desayuno" style="background:var(--harina-2)">
+    <div class="wrap">
+      <img src="../img/obrador-la-espiga-8.jpg" alt="Café con leche rodeado de bollería" loading="lazy">
+      <div>
+        <p class="eti">Rincón de desayunos</p>
+        <h2 style="font-size:clamp(2.1rem,4.4vw,3rem);margin-top:6px">Café y tostada antes del trabajo</h2>
+        <p class="precio-grande">2,80 €</p>
+        <p style="color:var(--corteza-2)">Café y media tostada de pan de pueblo con tomate y aceite, o con mantequilla y mermelada. De lunes a sábado hasta las 11:30.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="cab"><div><p class="eti">Vuestras opiniones de Google</p><h2>Lo que dicen los vecinos</h2></div></div>
+      <div class="ops">
+        <article class="op"><div class="est">★★★★★</div><p>El pan de pueblo aguanta tres días como el primero. Y las teleras de la tarde salen calentitas.</p><p class="quien">Manolo F. <small>· hace 1 semana</small></p></article>
+        <article class="op"><div class="est">★★★★★</div><p>Encargué la tarta del cumple de mi hija por WhatsApp y la tenían lista a la hora. Riquísima.</p><p class="quien">Rocío V. <small>· hace 3 semanas</small></p></article>
+        <article class="op"><div class="est">★★★★★</div><p>Las torrijas de Semana Santa son las mejores del pueblo, sin discusión.</p><p class="quien">Isabel T. <small>· hace 7 meses</small></p></article>
+      </div>
+      <p style="margin-top:14px;font-size:.8rem;color:var(--corteza-2)">Opiniones de ejemplo para esta muestra. En la web real se muestran las vuestras de Google.</p>
+    </div>
+  </section>
+
+  <section class="info" id="info" style="padding-top:0">
+    <div class="wrap">
+      <div class="caja"><p class="eti" style="margin-bottom:8px">Horario</p><table class="horario" id="horario" aria-label="Horario"><tbody></tbody></table></div>
+      <div class="caja" id="donde"><p class="eti">Dónde estamos</p><h3 style="font-size:1.6rem;margin:8px 0 6px">PLAZA DOCTOR FÉLIX RODRÍGUEZ DE LA FUENTE LOCAL 3 · San Juan de Aznalfarache</h3><p style="color:var(--corteza-2);margin-bottom:16px">Junto a la plaza del Ayuntamiento. Puedes aparcar en doble fila un minuto: salimos a dártelo.</p><a class="btn btn-2 btn-sm" href="https://www.google.com/maps/search/?api=1&amp;query=Fruter%C3%ADa+Yoli+PLAZA+DOCTOR+F%C3%89LIX+RODR%C3%8DGUEZ+DE+LA+FUENTE+LOCAL+3+San+Juan+de+Aznalfarache" target="_blank" rel="noopener">Cómo llegar</a></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b>Frutería Yoli</b> · PLAZA DOCTOR FÉLIX RODRÍGUEZ DE LA FUENTE LOCAL 3 · San Juan de Aznalfarache (Sevilla) · 640 36 30 98</div>
+    <div class="legal"><span>Aviso legal</span><span>Política de privacidad</span><span>Sin cookies de seguimiento</span></div>
+    <div class="firma">Web de muestra diseñada por <b>Monty Web</b>. Hacemos webs para panaderías, bares y tiendas de Sevilla.</div>
+  </div>
+</footer>
+
+<div class="barra" aria-label="Acciones rápidas"><div class="fila">
+  <a class="btn btn-2" href="#pan">Pan</a>
+  <a class="btn btn-1" href="#tartas">Encargar tarta</a>
+  <a class="btn btn-2" href="#donde">Llegar</a>
+</div></div>
+
+<dialog id="aviso"><div class="in"><h3>Así funcionaría</h3><p id="aviso-p"></p><pre id="aviso-msg" hidden></pre><button class="btn btn-1" type="button" id="aviso-ok">Entendido</button></div></dialog>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Bakery","name":"Frutería Yoli","priceRange":"€","telephone":"+34 640 36 30 98","address":{"@type":"PostalAddress","streetAddress":"PLAZA DOCTOR FÉLIX RODRÍGUEZ DE LA FUENTE LOCAL 3","postalCode":"41920","addressLocality":"San Juan de Aznalfarache","addressRegion":"Sevilla","addressCountry":"ES"}}
+</script>
+<script>
+(function(){
+  var HORARIO={1:["07:00-14:30","17:30-20:30"],2:["07:00-14:30","17:30-20:30"],3:["07:00-14:30","17:30-20:30"],4:["07:00-14:30","17:30-20:30"],5:["07:00-14:30","17:30-20:30"],6:["07:00-14:30"],0:["08:00-14:00"]};
+  var NOM=["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+  var p=new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Madrid",weekday:"short",hour:"2-digit",minute:"2-digit",month:"numeric",hour12:false}).formatToParts(new Date()),o={};
+  p.forEach(function(x){o[x.type]=x.value});
+  var D={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6}[o.weekday],M=(+o.hour%24)*60+(+o.minute),MES=+o.month;
+  function aMin(t){var a=t.split(":");return +a[0]*60+(+a[1])}
+  var tb=document.querySelector("#horario tbody");
+  [1,2,3,4,5,6,0].forEach(function(d){var tr=document.createElement("tr");if(d===D)tr.className="hoy";tr.innerHTML="<td>"+NOM[d]+(d===D?" (hoy)":"")+"</td><td>"+HORARIO[d].join(" y ").replace(/-/g," – ")+"</td>";tb.appendChild(tr)});
+  // hornadas
+  var items=[].slice.call(document.querySelectorAll("#h-lista li")),prox=null;
+  if(D===0){items[2].classList.add("pasada");items[2].querySelector("small").textContent="Domingo: no hay"}
+  items.forEach(function(li){var m=aMin(li.getAttribute("data-h"));if(m+30<=M)li.classList.add("pasada");else if(!prox&&!(D===0&&li===items[2])){prox=li}});
+  var est=document.getElementById("h-estado");
+  if(prox){prox.classList.add("proxima");var m=aMin(prox.getAttribute("data-h"));est.textContent=(M>=m)?"Saliendo del horno ahora":"Próxima a las "+prox.getAttribute("data-h")}
+  else est.textContent="Mañana a las 7:00, la primera";
+  // temporada
+  document.querySelectorAll(".mes").forEach(function(m){if(m.getAttribute("data-meses").split(",").map(Number).indexOf(MES)>-1)m.classList.add("ahora")});
+  // encargo
+  var dia=document.getElementById("t-dia"),min=new Date(Date.now()+2*864e5);dia.value=min.toISOString().slice(0,10);dia.min=dia.value;
+  function v(id){return document.getElementById(id).value}
+  function msg(){var d=dia.value?new Date(dia.value+"T12:00:00").toLocaleDateString("es-ES",{weekday:"long",day:"numeric",month:"long"}):"(elige día)";var t=v("t-texto").trim();var n=v("t-nombre").trim()||"(tu nombre)";return "Hola, soy "+n+". Quería encargar una tarta de "+v("t-sabor").toLowerCase()+" de "+v("t-rac")+" raciones para recoger el "+d+" "+v("t-hora").toLowerCase()+"."+(t?" Con el texto: «"+t+"».":"")+" ¡Gracias!"}
+  var f=document.getElementById("form-enc");function pinta(){document.getElementById("t-vista").textContent=msg()}
+  f.addEventListener("input",pinta);f.addEventListener("change",pinta);pinta();
+  var dlg=document.getElementById("aviso");document.getElementById("aviso-ok").addEventListener("click",function(){dlg.close()});
+  f.addEventListener("submit",function(e){e.preventDefault();document.getElementById("aviso-p").textContent="En la web real, este botón abre WhatsApp con el encargo ya escrito para el obrador:";var pre=document.getElementById("aviso-msg");pre.hidden=false;pre.textContent=msg();if(dlg.showModal)dlg.showModal()});
+})();
+</script>
+
+</body>
+</html>

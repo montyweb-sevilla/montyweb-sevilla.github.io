@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Clínica AljaSalud · propuesta de web</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Clínica de fisioterapia en Mairena del Aljarafe. Dinos qué te duele, mira precios y pide cita en un minuto.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Figtree:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: clínica serena — blanco roto, verde azulado profundo y arena; buscador "¿qué te duele?", tratamientos con duración y precio, cita en cuatro pasos */
+:root{
+  --fondo:#f6f8f6;
+  --blanco:#ffffff;
+  --tinta:#12343b;
+  --verde:#2f7d6d;
+  --verde-2:#e3f0ec;
+  --arena:#f1e9dc;
+  --gris:#5b6f72;
+  --linea:#dde6e3;
+  --display:"Fraunces", Georgia, serif;
+  --texto:"Figtree", "Segoe UI", system-ui, sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{background:var(--fondo);color:var(--tinta);font-family:var(--texto);font-size:16px;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--fondo)}
+.wrap{max-width:1120px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.01em}
+p{margin:0}
+img{height:auto}
+.eti{font-size:.74rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--verde)}
+:focus-visible{outline:3px solid var(--verde);outline-offset:2px;border-radius:6px}
+
+.demo{background:var(--tinta);color:#d8ebe6;font-size:.8rem;text-align:center}
+.demo .wrap{padding-block:7px}
+.demo b{color:#fff}
+
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(246,248,246,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--linea)}
+header.top .wrap{display:flex;align-items:center;gap:20px;padding-block:12px}
+.marca{text-decoration:none;margin-right:auto;line-height:1.05;display:flex;align-items:center;gap:10px}
+.marca svg{flex:none}
+.marca b{display:block;font-family:var(--display);font-weight:600;font-size:1.45rem}
+.marca small{display:block;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gris)}
+nav.menu{display:flex;gap:22px;font-weight:600;font-size:.94rem}
+nav.menu a{text-decoration:none;color:var(--gris)}
+nav.menu a:hover{color:var(--verde)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;padding:12px 22px;font:700 .98rem var(--texto);text-decoration:none;cursor:pointer;border:2px solid transparent;transition:transform .15s,background .15s;background:none;color:inherit}
+.btn:hover{transform:translateY(-1px)}
+.btn-1{background:var(--verde);color:#fff}
+.btn-1:hover{background:#276b5d}
+.btn-2{color:var(--tinta);border-color:var(--tinta)}
+.btn-sm{padding:9px 16px;font-size:.9rem}
+@media (max-width:900px){nav.menu{display:none}header.top .btn-sm{display:none}}
+
+/* portada */
+.hero{padding-block:40px 60px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(2.6rem,6.4vw,4.6rem)}
+.hero .lema{font-size:1.15rem;color:var(--gris);margin-top:16px;max-width:40ch}
+.estado{display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:8px 14px;border-radius:999px;background:var(--verde-2);font-weight:700;font-size:.92rem}
+.estado i{width:9px;height:9px;border-radius:50%;background:#2e9e66;box-shadow:0 0 0 4px rgba(46,158,102,.18)}
+.estado.cerrado i{background:#b9723a;box-shadow:0 0 0 4px rgba(185,114,58,.18)}
+.acciones{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.sello{display:flex;gap:10px 22px;flex-wrap:wrap;margin-top:28px;color:var(--gris);font-size:.93rem}
+.sello b{color:var(--tinta)}
+.foto{position:relative;min-width:0}
+.foto img{display:block;width:100%;aspect-ratio:5/4;object-fit:cover;border-radius:28px}
+.foto .chip{position:absolute;left:-14px;bottom:24px;background:#fff;border-radius:14px;padding:12px 16px;box-shadow:0 12px 30px rgba(18,52,59,.16);font-size:.88rem;line-height:1.35;max-width:240px}
+.foto .chip b{display:block;font-size:1rem}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr;gap:26px}.foto{order:-1}.foto .chip{left:10px;bottom:12px}.hero{padding-block:20px 44px}}
+
+section{padding-block:64px}
+.cab{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:16px;margin-bottom:28px}
+.cab h2{font-size:clamp(2rem,4.4vw,3rem);margin-top:8px}
+.cab p{color:var(--gris);max-width:46ch}
+
+/* qué te duele */
+.duele{background:var(--blanco)}
+.zonas{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+.zonas button{font:600 .95rem var(--texto);padding:10px 16px;border-radius:999px;border:1px solid #c9d8d4;background:#fff;color:var(--tinta);cursor:pointer}
+.zonas button[aria-pressed="true"]{background:var(--tinta);border-color:var(--tinta);color:#fff}
+.panel{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;padding:28px;border-radius:22px;background:var(--verde-2)}
+.panel h3{font-size:1.8rem}
+.panel .bloque{margin-top:16px}
+.panel .bloque b{display:block;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--verde);margin-bottom:6px}
+.panel ul{margin:0;padding-left:18px;display:grid;gap:4px}
+.panel .lado-p{background:#fff;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px;align-self:start}
+.panel .lado-p .num{font-family:var(--display);font-size:2.4rem;line-height:1}
+.panel .lado-p small{color:var(--gris)}
+@media (max-width:820px){.panel{grid-template-columns:1fr;padding:20px}}
+
+/* tratamientos */
+.lista-t{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px}
+.srv{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:4px 14px;padding:14px 0;border-bottom:1px solid var(--linea)}
+.srv b{font-weight:700}
+.srv small{grid-column:1/-1;color:var(--gris);font-size:.9rem;margin-top:-2px}
+.srv .dur{font-size:.85rem;color:var(--gris);white-space:nowrap}
+.srv .pre{font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}
+@media (max-width:820px){.lista-t{grid-template-columns:1fr}}
+.bono{margin-top:34px;display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;padding:24px 28px;border-radius:20px;background:var(--arena)}
+.bono h3{font-size:1.7rem}
+.bono p{color:var(--gris);margin-top:4px}
+@media (max-width:700px){.bono{grid-template-columns:1fr}}
+
+/* primera visita */
+.visita{background:var(--tinta);color:#e4f0ed}
+.visita .eti{color:#9fd3c4}
+.visita h2{color:#fff}
+.visita .cab p{color:#b9d3cd}
+.pasos-v{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;counter-reset:p}
+.pv{padding:24px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
+.pv::before{counter-increment:p;content:counter(p);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#9fd3c4;color:var(--tinta);font-weight:800;margin-bottom:12px}
+.pv h3{color:#fff;font-size:1.3rem;margin-bottom:6px}
+.pv p{color:#c3dad4;font-size:.96rem}
+.traer{margin-top:22px;padding:18px 22px;border-radius:16px;background:rgba(159,211,196,.14);color:#e4f0ed}
+.traer b{color:#fff}
+@media (max-width:820px){.pasos-v{grid-template-columns:1fr}}
+
+/* cita */
+.reserva .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:start}
+.form{background:var(--blanco);border:1px solid var(--linea);border-radius:20px;padding:24px;display:grid;gap:20px}
+.paso h3{font-family:var(--texto);font-weight:800;font-size:.95rem;display:flex;gap:10px;align-items:center;margin-bottom:10px}
+.paso h3 span{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--tinta);color:#fff;font-size:.8rem}
+.paso select,.paso input{width:100%;font:inherit;padding:11px 12px;border:1px solid #c9d8d4;border-radius:10px;background:#fff;color:var(--tinta)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font:600 .9rem var(--texto);padding:9px 12px;border-radius:10px;border:1px solid #c9d8d4;background:#fff;color:var(--tinta);cursor:pointer;min-width:64px}
+.chips button span{display:block;font-size:.72rem;font-weight:500;color:var(--gris)}
+.chips button[aria-pressed="true"]{background:var(--tinta);border-color:var(--tinta);color:#fff}
+.chips button[aria-pressed="true"] span{color:#cfe3de}
+.chips button:disabled{opacity:.35;text-decoration:line-through;cursor:not-allowed}
+.resumen{padding:14px 16px;border-radius:12px;background:#e7f6ee;color:#1d5338;font-size:.95rem}
+.resumen b{display:block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px}
+.nota{font-size:.8rem;color:var(--gris)}
+.lado{display:grid;gap:18px}
+.caja{padding:22px;border-radius:18px;background:var(--arena)}
+.caja h3{font-family:var(--texto);font-weight:800;font-size:1rem;margin-bottom:8px}
+.caja p,.caja ul{color:var(--gris)}
+.caja ul{margin:0;padding-left:18px;display:grid;gap:6px}
+.horario{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.horario td{padding:7px 0;border-bottom:1px solid #e2d6c3}
+.horario td:last-child{text-align:right}
+.horario tr.hoy td{font-weight:800;color:var(--verde)}
+@media (max-width:900px){.reserva .wrap{grid-template-columns:1fr}}
+
+/* clínica */
+.clinica{background:var(--blanco)}
+.galeria{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.galeria figure{margin:0;min-width:0}
+.galeria img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:16px}
+.galeria figcaption{font-size:.88rem;color:var(--gris);margin-top:6px}
+@media (max-width:760px){.galeria{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* equipo */
+.equipo{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.persona{padding:22px;border-radius:18px;border:1px solid var(--linea);background:var(--blanco);display:flex;gap:14px;align-items:flex-start}
+.persona .ini{flex:none;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--verde-2);color:var(--verde);font-family:var(--display);font-size:1.4rem}
+.persona p{color:var(--gris);font-size:.93rem}
+.persona small{display:block;color:var(--verde);font-weight:700;font-size:.8rem;margin-top:2px}
+@media (max-width:860px){.equipo{grid-template-columns:1fr}}
+
+/* opiniones */
+.ops{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.op{padding:22px;border-radius:18px;background:var(--blanco);border:1px solid var(--linea);display:flex;flex-direction:column;gap:10px}
+.op .est{color:#c08a3e;letter-spacing:2px}
+.op .quien{font-weight:700}
+.op .quien small{font-weight:500;color:var(--gris)}
+@media (max-width:860px){.ops{grid-template-columns:1fr}}
+
+/* preguntas */
+.faq{display:grid;gap:10px;max-width:820px}
+.faq details{background:var(--blanco);border:1px solid var(--linea);border-radius:14px;padding:16px 18px}
+.faq summary{font-weight:700;cursor:pointer}
+.faq details p{color:var(--gris);margin-top:8px}
+
+/* dónde */
+.donde{background:var(--blanco)}
+.donde .wrap{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
+.donde img{display:block;width:100%;aspect-ratio:16/11;object-fit:cover;border-radius:22px}
+@media (max-width:860px){.donde .wrap{grid-template-columns:1fr}}
+
+footer{background:var(--tinta);color:#bfd4cf;padding-block:36px 110px;font-size:.92rem}
+footer .wrap{display:grid;gap:14px}
+footer b{color:#fff}
+footer .legal{display:flex;flex-wrap:wrap;gap:8px 18px}
+@media (min-width:901px){footer{padding-bottom:36px}}
+
+.barra{position:fixed;left:0;right:0;bottom:0;z-index:30;display:none;background:#fff;border-top:1px solid var(--linea);padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.barra .fila{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:8px}
+.barra .btn{padding:11px 6px;font-size:.9rem}
+@media (max-width:900px){.barra{display:block}}
+
+dialog{border:0;border-radius:18px;padding:0;max-width:min(440px,calc(100vw - 32px));background:#fff;color:var(--tinta);box-shadow:0 20px 60px rgba(18,52,59,.3)}
+dialog::backdrop{background:rgba(18,52,59,.5)}
+dialog .in{padding:24px;display:grid;gap:12px}
+dialog h3{font-size:1.7rem}
+dialog pre{white-space:pre-wrap;font:inherit;background:#e7f6ee;color:#1d5338;padding:12px 14px;border-radius:10px;margin:0}
+</style>
+</head>
+<body>
+
+<div class="demo"><div class="wrap">Propuesta de web preparada por <b>Monty Web</b> para Clínica AljaSalud. No es su web oficial: las fotos, los textos, los precios, el horario y las opiniones son de ejemplo.</div></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="marca" href="#inicio"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="1" width="32" height="32" rx="9" fill="#2f7d6d"/><path d="M9 9l16 16M25 9L9 25M17 6v22M6 17h22" stroke="#e3f0ec" stroke-width="1.6"/></svg><span><b>Clínica AljaSalud</b><small>Fisioterapia</small></span></a>
+    <nav class="menu" aria-label="Secciones"><a href="#duele">¿Qué te duele?</a><a href="#tratamientos">Tratamientos</a><a href="#visita">Primera visita</a><a href="#equipo">Equipo</a><a href="#donde">Dónde estamos</a></nav>
+    <a class="btn btn-1 btn-sm" href="#cita">Pedir cita</a>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eti">Fisioterapia · Mairena del Aljarafe</p>
+        <h1>Que el dolor no decida por ti</h1>
+        <p class="lema">Te valoramos, te tratamos y te enseñamos los ejercicios para que no vuelva. Sesiones de 45 minutos, siempre con el mismo fisioterapeuta.</p>
+        <p class="estado" id="estado"><i></i><span>Abrimos de lunes a sábado</span></p>
+        <div class="acciones"><a class="btn btn-1" href="#cita">Pedir cita</a><a class="btn btn-2" href="#duele">¿Qué te duele?</a></div>
+        <div class="sello"><span><b>Vuestras opiniones</b> de Google</span><span><b>Fisios colegiados</b></span><span><b>Mutuas y seguros</b>, pregúntanos</span></div>
+      </div>
+      <div class="foto">
+        <img src="../img/celosia-fisioterapia-1.jpg" alt="Fisioterapeuta movilizando el hombro de una paciente tumbada en la camilla" width="1000" height="800">
+        <p class="chip"><b>Primera visita con valoración</b>Salimos con un plan y ejercicios para casa</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="duele" id="duele">
+    <div class="wrap">
+      <div class="cab"><div><p class="eti">¿Qué te duele?</p><h2>Cuéntanos dónde y te decimos cómo lo trabajamos</h2></div><p>Elige la zona. Es orientativo: en la primera visita te valoramos y ajustamos el plan a ti.</p></div>
+      <div class="zonas" id="zonas" role="group" aria-label="Zona del dolor"></div>
+      <div class="panel" aria-live="polite">
+        <div>
+          <h3 id="z-titulo"></h3>
+          <div class="bloque"><b>Lo que más vemos</b><ul id="z-casos"></ul></div>
+          <div class="bloque"><b>Cómo lo trabajamos</b><p id="z-como"></p></div>
+        </div>
+        <div class="lado-p">
+          <small>Sesiones orientativas</small>
+          <p class="num" id="z-ses"></p>
+          <small id="z-nota"></small>
+          <button class="btn btn-1" type="button" id="z-cita">Pedir cita para esto</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tratamientos">
+    <div class="wrap">
+      <div class="cab"><div><p class="eti">Tratamientos y precios</p><h2>Claro desde el principio</h2></div><p>Cada sesión es individual: una persona, un fisio y la puerta cerrada. Nada de tenerte con una máquina mientras atendemos a otro.</p></div>
+      <div class="lista-t">
+        <div class="srv"><b>Valoración y primera sesión</b><span class="dur">60 min</span><span class="pre">40 €</span><small>Te escuchamos, exploramos y empezamos a tratar ese mismo día.</small></div>
+        <div class="srv"><b>Sesión de fisioterapia</b><span class="dur">45 min</span><span class="pre">35 €</span><small>Terapia manual, ejercicio y lo que necesites según la valoración.</small></div>
+        <div class="srv"><b>Fisioterapia deportiva</b><span class="dur">45 min</span><span class="pre">35 €</span><small>Esguinces, roturas fibrilares, sobrecargas y vuelta al deporte.</small></div>
+        <div class="srv"><b>Suelo pélvico</b><span class="dur">50 min</span><span class="pre">45 €</span><small>Embarazo, posparto, pérdidas de orina. En una sala aparte.</small></div>
+        <div class="srv"><b>Punción seca</b><span class="dur">+15 min</span><span class="pre">+10 €</span><small>Dentro de una sesión, solo si está indicada.</small></div>
+        <div class="srv"><b>Ondas de choque</b><span class="dur">20 min</span><span class="pre">30 €</span><small>Fascitis plantar, tendinitis de hombro y codo.</small></div>
+        <div class="srv"><b>Rehabilitación tras una operación</b><span class="dur">45 min</span><span class="pre">35 €</span><small>Rodilla, cadera, hombro. Trae el informe del cirujano.</small></div>
+        <div class="srv"><b>Fisioterapia a domicilio</b><span class="dur">45 min</span><span class="pre">45 €</span><small>Para quien no puede venir. Mairena y pueblos de al lado.</small></div>
+      </div>
+      <div class="bono">
+        <div><h3>Bono de 5 sesiones: 160 €</h3><p>Te ahorras 15 € y lo puedes compartir con alguien de tu familia. Válido durante 4 meses.</p></div>
+        <button class="btn btn-1" type="button" data-motivo="Bono de 5 sesiones">Lo quiero</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="visita" id="visita">
+    <div class="wrap">
+      <div class="cab"><div><p class="eti">Tu primera visita</p><h2>Qué va a pasar cuando vengas</h2></div><p>Sin prisas y sin tecnicismos. Si algo no es para fisioterapia, te lo decimos y te orientamos.</p></div>
+      <div class="pasos-v">
+        <div class="pv"><h3>Te escuchamos</h3><p>Desde cuándo te duele, qué lo empeora, qué haces en tu día a día. Luego exploramos la zona con calma.</p></div>
+        <div class="pv"><h3>Tratamos desde el primer día</h3><p>Nada de "hoy solo miramos". Sales de la primera sesión ya tratado y sabiendo qué tienes.</p></div>
+        <div class="pv"><h3>Ejercicios para casa</h3><p>Te mandamos por WhatsApp un vídeo corto con tus ejercicios, para que no se te olviden.</p></div>
+      </div>
+      <p class="traer"><b>Qué traer:</b> ropa cómoda, los informes o pruebas que tengas (resonancias, radiografías) y la lista de medicación si tomas alguna.</p>
+    </div>
+  </section>
+
+  <section class="reserva" id="cita">
+    <div class="wrap">
+      <div>
+        <p class="eti">Pedir cita</p>
+        <h2 style="font-size:clamp(2rem,4.4vw,3rem);margin:8px 0 18px">Elige y te confirmamos</h2>
+        <div class="form">
+          <div class="paso"><h3><span>1</span>¿Qué te trae por aquí?</h3>
+            <select id="c-motivo" aria-label="Motivo de la cita"></select>
+          </div>
+          <div class="paso"><h3><span>2</span>¿Qué día?</h3><div class="chips" id="c-dias"></div></div>
+          <div class="paso"><h3><span>3</span>¿A qué hora?</h3><div class="chips" id="c-horas"></div><p class="nota" style="margin-top:8px">Huecos de ejemplo. En la web real se ven los libres de verdad.</p></div>
+          <div class="paso"><h3><span>4</span>Tu nombre</h3><input id="c-nombre" type="text" placeholder="Nombre y apellido" autocomplete="name"></div>
+          <div class="resumen" aria-live="polite"><b>Te enviamos esto por WhatsApp</b><span id="c-resumen"></span></div>
+          <button class="btn btn-1" type="button" id="c-enviar">Confirmar cita por WhatsApp</button>
+        </div>
+      </div>
+      <div class="lado">
+        <div class="caja"><h3>Horario</h3><table class="horario" id="horario" aria-label="Horario"><tbody></tbody></table></div>
+        <div class="caja"><h3>Mutuas y seguros</h3><p>Trabajamos con varias mutuas y seguros de salud. Dinos cuál tienes al pedir cita y te confirmamos si te lo cubre.</p></div>
+        <div class="caja"><h3>Bueno saber</h3><ul><li>Si no puedes venir, avísanos con 24 horas.</li><li>Pagas con tarjeta, Bizum o en efectivo.</li><li>Te damos factura para el seguro o la declaración.</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="clinica" id="clinica">
+    <div class="wrap">
+      <div class="cab"><div><p class="eti">La clínica</p><h2>Salas amplias y luminosas</h2></div><p>Tres salas de tratamiento, una de ellas para suelo pélvico, y una zona de ejercicio.</p></div>
+      <div class="galeria">
+        <figure><img src="../img/celosia-fisioterapia-2.jpg" alt="Fisioterapeuta explorando la rodilla de un paciente en la camilla" loading="lazy"><figcaption>Valoración de rodilla</figcaption></figure>
+        <figure><img src="../img/celosia-fisioterapia-3.jpg" alt="Paciente haciendo ejercicio con mancuernas guiada por el fisioterapeuta" loading="lazy"><figcaption>Ejercicio guiado</figcaption></figure>
+        <figure><img src="../img/celosia-fisioterapia-4.jpg" alt="Tratamiento con ondas de choque en el brazo" loading="lazy"><figcaption>Ondas de choque</figcaption></figure>
+        <figure><img src="../img/celosia-fisioterapia-5.jpg" alt="Rehabilitación con apoyo en barra después de una lesión" loading="lazy"><figcaption>Vuelta a caminar</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="equipo">
+    <div class="wrap">
+      <div class="cab"><div><p class="eti">El equipo</p><h2>Quién te va a tratar</h2></div></div>
+      <div class="equipo">
+        <div class="persona"><span class="ini">L</span><div><b>Laura</b><small>Fisioterapeuta colegiada</small><p>Suelo pélvico, embarazo y posparto. Directora de la clínica.</p></div></div>
+        <div class="persona"><span class="ini">J</span><div><b>Javier</b><small>Fisioterapeuta colegiado</small><p>Deportiva y punción seca. Lleva a varios equipos de fútbol base.</p></div></div>
+        <div class="persona"><span class="ini">A</span><div><b>Ana</b><small>Fisioterapeuta colegiada</small><p>Personas mayores, rehabilitación tras operaciones y domicilios.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="cab"><div><p class="eti">Opiniones en Google</p><h2>Lo que dicen vuestros clientes</h2></div></div>
+      <div class="ops">
+        <article class="op"><div class="est">★★★★★</div><p>Llegué sin poder girar el cuello y a la tercera sesión estaba como nueva. Javier te explica todo lo que hace.</p><p class="quien">Rocío G. <small>· hace 2 semanas</small></p></article>
+        <article class="op"><div class="est">★★★★★</div><p>Después de la operación de rodilla vinieron a casa las primeras semanas. Un trato de diez.</p><p class="quien">Manuel P. <small>· hace 3 meses</small></p></article>
+        <article class="op"><div class="est">★★★★★</div><p>Pedir cita por la web es comodísimo y siempre me atiende la misma persona. Muy recomendable.</p><p class="quien">Inés R. <small>· hace 1 mes</small></p></article>
+      </div>
+      <p class="nota" style="margin-top:14px">Opiniones de ejemplo para esta muestra. En la web real se muestran las vuestras de Google.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="cab"><div><p class="eti">Preguntas frecuentes</p><h2>Lo que más nos preguntáis</h2></div></div>
+      <div class="faq">
+        <details><summary>¿Necesito que me mande el médico?</summary><p>No. Puedes venir directamente. Si traes informes o pruebas, mejor, pero no hace falta volante.</p></details>
+        <details><summary>¿Cuántas sesiones voy a necesitar?</summary><p>Depende de lo que tengas y de cuánto tiempo lleve. En la primera visita te damos una estimación y la vamos revisando contigo.</p></details>
+        <details><summary>¿Me cubre la mutua?</summary><p>Trabajamos con varias. Dinos cuál tienes al pedir cita y te lo confirmamos antes de venir.</p></details>
+        <details><summary>¿Puedo cambiar o anular la cita?</summary><p>Claro. Escríbenos por WhatsApp con 24 horas de antelación y te buscamos otro hueco.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="donde" id="donde">
+    <div class="wrap">
+      <img src="../img/celosia-fisioterapia-6.jpg" alt="Sala de tratamiento con camilla junto a una ventana grande" loading="lazy">
+      <div>
+        <p class="eti">Dónde estamos</p>
+        <h2 style="font-size:clamp(2rem,4.4vw,3rem);margin:8px 0 12px">Ven a vernos</h2>
+        <p style="font-weight:700;font-size:1.15rem">Vuestra dirección · Mairena del Aljarafe (Sevilla)</p>
+        <p style="color:var(--gris);margin:8px 0 22px">Local a pie de calle, sin escalones y con aparcamiento en la puerta. Parada de autobús a 100 metros.</p>
+        <a class="btn btn-1" href="https://www.google.com/maps/search/?api=1&amp;query=Cl%C3%ADnica+AljaSalud+Mairena+del+Aljarafe" target="_blank" rel="noopener">Cómo llegar</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b>Clínica AljaSalud</b> · Vuestra dirección · Mairena del Aljarafe (Sevilla) · vuestro teléfono</div>
+    <div class="legal"><span>Aviso legal</span><span>Política de privacidad</span><span>Sin cookies de seguimiento</span></div>
+    <div>Web de muestra diseñada por <b>Monty Web</b>. Hacemos webs para clínicas, academias, talleres y comercios.</div>
+  </div>
+</footer>
+
+<div class="barra" aria-label="Acciones rápidas"><div class="fila">
+  <a class="btn btn-2" href="#llamar" id="b-llamar">Llamar</a>
+  <a class="btn btn-1" href="#cita">Pedir cita</a>
+  <a class="btn btn-2" href="#donde">Llegar</a>
+</div></div>
+
+<dialog id="aviso"><div class="in"><h3>Así funcionaría</h3><p id="aviso-p"></p><pre id="aviso-msg" hidden></pre><button class="btn btn-1" type="button" id="aviso-ok">Entendido</button></div></dialog>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Physiotherapy","name":"Clínica AljaSalud","priceRange":"€€","telephone":"+34 vuestro teléfono","address":{"@type":"PostalAddress","streetAddress":"Vuestra dirección","postalCode":"","addressLocality":"Mairena del Aljarafe","addressRegion":"Sevilla","addressCountry":"ES"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"21:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"09:30","closes":"13:30"}]}
+</script>
+<script>
+(function(){
+  var HORARIO={1:["09:00-14:00","16:00-21:00"],2:["09:00-14:00","16:00-21:00"],3:["09:00-14:00","16:00-21:00"],4:["09:00-14:00","16:00-21:00"],5:["09:00-14:00","16:00-20:00"],6:["09:30-13:30"],0:[]};
+  var NOM=["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+  var CORTO=["dom","lun","mar","mié","jue","vie","sáb"];
+  var p=new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Madrid",weekday:"short",hour:"2-digit",minute:"2-digit",hour12:false}).formatToParts(new Date()),o={};
+  p.forEach(function(x){o[x.type]=x.value});
+  var D={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6}[o.weekday],M=(+o.hour%24)*60+(+o.minute);
+  function aMin(t){var a=t.split(":");return +a[0]*60+(+a[1])}
+  var tb=document.querySelector("#horario tbody");
+  [1,2,3,4,5,6,0].forEach(function(d){var tr=document.createElement("tr");if(d===D)tr.className="hoy";tr.innerHTML="<td>"+NOM[d]+(d===D?" (hoy)":"")+"</td><td>"+(HORARIO[d].length?HORARIO[d].join(" y ").replace(/-/g," – "):"Cerrado")+"</td>";tb.appendChild(tr)});
+  var est=document.getElementById("estado"),txt=est.querySelector("span"),cierra=null,prox=null;
+  HORARIO[D].forEach(function(r){var a=r.split("-");if(M>=aMin(a[0])&&M<aMin(a[1]))cierra=a[1];if(!prox&&M<aMin(a[0]))prox=a[0]});
+  if(cierra)txt.textContent="Abierto ahora · hasta las "+cierra;else{est.classList.add("cerrado");txt.textContent=prox?"Abrimos hoy a las "+prox:(D===6||D===0?"Cerrado ahora · abrimos el lunes a las 9:00":"Cerrado ahora · mañana abrimos a las 9:00")}
+
+  // ¿qué te duele?
+  var ZONAS=[
+    {n:"Cuello y cervicales",c:["Dolor al girar la cabeza","Cefaleas que empiezan en la nuca","Hormigueo hacia el brazo"],t:"Terapia manual suave para recuperar el movimiento, ejercicios de control postural y pautas para el ordenador y el móvil.",s:"3 a 5",x:"Si el dolor baja por el brazo, lo valoramos antes de tratar."},
+    {n:"Espalda baja",c:["Lumbago al agacharte o al levantarte","Dolor que baja por la pierna (ciática)","Rigidez por las mañanas"],t:"Movilización, ejercicio terapéutico progresivo y consejos para cargar peso sin hacerte daño.",s:"4 a 6",x:"La mayoría de lumbalgias mejoran mucho en pocas semanas con ejercicio."},
+    {n:"Hombro",c:["Dolor al levantar el brazo","No puedes dormir sobre ese lado","Tendinitis del manguito rotador"],t:"Terapia manual, ejercicios con banda elástica y, si hace falta, ondas de choque.",s:"5 a 8",x:"Los hombros piden constancia: los ejercicios de casa son la mitad del tratamiento."},
+    {n:"Rodilla",c:["Dolor al subir o bajar escaleras","Esguinces y lesiones de menisco","Rehabilitación tras prótesis o ligamento"],t:"Fortalecimiento progresivo, trabajo de equilibrio y vuelta poco a poco a tu actividad.",s:"6 a 10",x:"Tras una operación, el número de sesiones depende del informe del cirujano."},
+    {n:"Tobillo y pie",c:["Esguince de tobillo","Fascitis plantar","Dolor en el tendón de Aquiles"],t:"Ejercicio, terapia manual y ondas de choque en fascitis y tendinopatías.",s:"4 a 6",x:"Un esguince mal curado se repite: merece la pena terminar el tratamiento."},
+    {n:"Suelo pélvico",c:["Pérdidas de orina al toser o correr","Recuperación del posparto","Preparación al parto"],t:"Valoración en sala privada, ejercicios adaptados a ti y seguimiento cercano con Laura.",s:"4 a 8",x:"Muy frecuente y muy tratable. No es algo que haya que aguantar."},
+    {n:"Lesión deportiva",c:["Rotura fibrilar","Sobrecargas por correr o jugar al pádel","Vuelta al deporte tras una lesión"],t:"Tratamiento de la lesión y plan de vuelta al deporte por fases, con pruebas antes de darte el alta.",s:"3 a 6",x:"Te decimos cuándo puedes volver a entrenar y cómo hacerlo sin recaer."}
+  ];
+  var zc=document.getElementById("zonas"),actual=ZONAS[1];
+  function pintaZona(z){actual=z;document.getElementById("z-titulo").textContent=z.n;var ul=document.getElementById("z-casos");ul.innerHTML="";z.c.forEach(function(c){var li=document.createElement("li");li.textContent=c;ul.appendChild(li)});document.getElementById("z-como").textContent=z.t;document.getElementById("z-ses").textContent=z.s+" sesiones";document.getElementById("z-nota").textContent=z.x;zc.querySelectorAll("button").forEach(function(b){b.setAttribute("aria-pressed",String(b.textContent===z.n))})}
+  ZONAS.forEach(function(z){var b=document.createElement("button");b.type="button";b.textContent=z.n;b.setAttribute("aria-pressed","false");b.addEventListener("click",function(){pintaZona(z)});zc.appendChild(b)});
+  pintaZona(actual);
+
+  // cita
+  var sel=document.getElementById("c-motivo");
+  ["Primera visita y valoración","Sesión de fisioterapia (ya soy paciente)","Fisioterapia deportiva","Suelo pélvico","Rehabilitación tras una operación","Bono de 5 sesiones","Fisioterapia a domicilio"].concat(ZONAS.map(function(z){return "Dolor: "+z.n.toLowerCase()})).forEach(function(t){var op=document.createElement("option");op.value=t;op.textContent=t;sel.appendChild(op)});
+  var cont=document.getElementById("c-dias"),estado={dia:null,hora:null};
+  var base=new Date(),n=0,i=0;
+  while(n<8&&i<20){var f=new Date(base.getTime()+i*864e5),wd=f.getDay();if(HORARIO[wd].length){(function(f,wd,esHoy){var b=document.createElement("button");b.type="button";b.setAttribute("aria-pressed","false");b.innerHTML=(esHoy?"Hoy":CORTO[wd])+"<span>"+f.getDate()+"/"+(f.getMonth()+1)+"</span>";b.addEventListener("click",function(){estado.dia={f:f,wd:wd,hoy:esHoy};cont.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",String(x===b))});horas();pinta()});cont.appendChild(b)})(f,wd,i===0);n++}i++}
+  var hcont=document.getElementById("c-horas");
+  function horas(){
+    hcont.innerHTML="";estado.hora=null;if(!estado.dia)return;
+    var seed=estado.dia.f.getDate()*11;
+    HORARIO[estado.dia.wd].forEach(function(r){var a=r.split("-"),m=aMin(a[0]),fin=aMin(a[1])-45;for(;m<=fin;m+=45){var h=("0"+Math.floor(m/60)).slice(-2)+":"+("0"+m%60).slice(-2);var b=document.createElement("button");b.type="button";b.textContent=h;b.setAttribute("aria-pressed","false");seed=(seed*29+m)%101;if(seed%3===0||(estado.dia.hoy&&m<=M+30))b.disabled=true;b.addEventListener("click",function(){estado.hora=this.textContent;var me=this;hcont.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",String(x===me))});pinta()});hcont.appendChild(b)}});
+    if(!hcont.querySelector("button:not(:disabled)")){var pz=document.createElement("p");pz.className="nota";pz.textContent="No quedan huecos este día. Prueba con otro.";hcont.appendChild(pz)}
+  }
+  cont.querySelector("button").click();
+  function msg(){var nm=document.getElementById("c-nombre").value.trim()||"(tu nombre)";var d=estado.dia?estado.dia.f.toLocaleDateString("es-ES",{weekday:"long",day:"numeric",month:"long"}):"(elige día)";return "Hola, soy "+nm+". Quería cita para "+sel.value.charAt(0).toLowerCase()+sel.value.slice(1)+" el "+d+" a las "+(estado.hora||"(elige hora)")+". ¡Gracias!"}
+  function pinta(){document.getElementById("c-resumen").textContent=msg()}
+  sel.addEventListener("change",pinta);document.getElementById("c-nombre").addEventListener("input",pinta);pinta();
+  function irACita(motivo){sel.value=motivo;pinta();document.getElementById("cita").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth"})}
+  document.getElementById("z-cita").addEventListener("click",function(){irACita("Dolor: "+actual.n.toLowerCase())});
+  document.querySelectorAll("[data-motivo]").forEach(function(b){b.addEventListener("click",function(){irACita(b.getAttribute("data-motivo"))})});
+  var dlg=document.getElementById("aviso");
+  function aviso(t,m){document.getElementById("aviso-p").textContent=t;var pre=document.getElementById("aviso-msg");pre.hidden=!m;pre.textContent=m||"";if(dlg.showModal)dlg.showModal()}
+  document.getElementById("aviso-ok").addEventListener("click",function(){dlg.close()});
+  document.getElementById("c-enviar").addEventListener("click",function(){aviso("En la web real, este botón abre WhatsApp con la cita ya escrita para la clínica. La clínica confirma y listo:",msg())});
+  document.getElementById("b-llamar").addEventListener("click",function(e){e.preventDefault();aviso("En la web real, este botón llama directamente a la clínica desde el móvil.")});
+})();
+</script>
+
+</body>
+</html>
